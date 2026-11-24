@@ -1,41 +1,95 @@
 # Learning Plan — Brooklyn Nine-Nine
 
-This file tracks the study structure for the TryHackMe Brooklyn Nine-Nine room. It is a learning plan, not a walkthrough or a record of completed findings.
+This plan follows the sequence demonstrated in the instructor's video and expands it into broader cybersecurity study. The video provides the practical order; the fundamentals and defensive tracks extend learning beyond this room.
 
-## Principles
+## Learning cycle
 
-- Work only inside the target environment provided by TryHackMe.
-- Understand each command before running it.
-- Keep notes factual: distinguish observed results from hypotheses.
-- Do not publish room answers, flags, credentials, or restricted walkthrough material while the room is active.
-- Use synthetic values in interface demonstrations; never present them as scan output.
+1. **Context** — identify the question and authorized scope.
+2. **Concepts** — understand the protocol, operating-system feature or security principle.
+3. **Practice** — perform only the step permitted in the TryHackMe lab.
+4. **Interpretation** — distinguish facts, assumptions and unknowns.
+5. **Defensive view** — consider logging, detection, impact and mitigation.
+6. **Documentation** — record general knowledge without restricted room answers.
 
-## Study sequence
+## Instructor-aligned sequence
 
-1. **Environment preparation** — confirm the attacker environment, target state, and authorized connection path.
-2. **Network reconnaissance** — learn host discovery, TCP ports, and scan interpretation.
-3. **Service enumeration** — understand service banners, versions, and protocol behavior.
-4. **Web reconnaissance** — study HTTP resources and content discovery.
-5. **Linux security** — review users, groups, permissions, and sudo policy.
-6. **Privilege boundaries** — learn how unsafe permissions can affect system security.
-7. **Remediation** — describe the defensive control that would reduce each observed risk.
+| Order | Stage | Main topics | Status |
+|:--:|:--|:--|:--|
+| 00 | Environment preparation | Kali Linux, OpenVPN, routes, scope and connectivity | Practised |
+| 01 | Web reconnaissance | HTTP, browser inspection, source review, metadata and content discovery | Next |
+| 02 | Network scanning | TCP, SYN scan, port states and Nmap interpretation | Initial scan practised |
+| 03 | Service / FTP review | Service identification, FTP behavior and file permissions | Pending |
+| 04 | SSH / authentication | SSH, password security, wordlists and authentication controls | Pending |
+| 05 | Linux enumeration | Identity, filesystem, users, groups, processes and permissions | Pending |
+| 06 | Privilege escalation concepts | Sudo policy, binary behavior and privilege boundaries | Pending |
+| 07 | Defensive review | Detection, hardening, remediation and reporting | Pending |
 
-## Evidence template
+"Practised" records the general learning activity. It does not mean the room is complete or that a specific vulnerability has been confirmed.
 
-For each permitted study note, record:
+## Broader learning tracks
 
-- **Objective:** what question the test is intended to answer.
-- **Scope:** the authorized lab host or service.
-- **Method:** tool and options used.
-- **Observation:** exact output or behavior observed, with sensitive/restricted material omitted.
-- **Interpretation:** what the observation does and does not establish.
-- **Defensive relevance:** why the behavior matters and how it can be mitigated.
+### Networking
+- IPv4 addressing and CIDR
+- TCP versus UDP
+- Ports, sockets and routing
+- DNS, HTTP, FTP and SSH
+- Packet inspection and network segmentation
 
-## Progress
+### Web security
+- URLs, HTTP methods, headers and status codes
+- Browser developer tools and source inspection
+- Static assets and metadata
+- Content discovery and web exposure
+- Authentication and session fundamentals
 
-- [ ] Environment and connectivity verified
-- [ ] Reconnaissance concepts reviewed
-- [ ] Service enumeration concepts reviewed
-- [ ] Web reconnaissance concepts reviewed
-- [ ] Linux permissions concepts reviewed
-- [ ] Remediation notes prepared
+### Linux and identity
+- Shell navigation and command pipelines
+- Users, groups and file permissions
+- Processes, services and environment variables
+- Sudo policy and least privilege
+- SSH keys and secure remote administration
+
+### Offensive security methodology
+- Scoping and authorization
+- Reconnaissance and enumeration
+- Evidence validation
+- Risk reasoning
+- Reproducible technical reporting
+
+### Defensive security
+- Authentication and service logs
+- Network monitoring
+- Detection opportunities
+- Secure configuration
+- Remediation and verification
+
+## Evidence quality rules
+
+Label statements as:
+- **Observed:** directly visible in output or behavior.
+- **Interpreted:** a reasoned explanation supported by an observation.
+- **Hypothesis:** a possibility requiring validation.
+- **Unknown:** information not established by available evidence.
+
+Never turn a hypothesis into a finding without validation.
+
+## Current progress
+
+- [x] Local Kali environment prepared
+- [x] OpenVPN connection established
+- [x] Lab reachability checked
+- [x] Initial TCP port-discovery exercise performed
+- [ ] Web reconnaissance study
+- [ ] Service enumeration study
+- [ ] FTP security concepts
+- [ ] SSH and authentication concepts
+- [ ] Linux enumeration concepts
+- [ ] Privilege-boundary concepts
+- [ ] Defensive analysis and remediation
+
+## Rules
+
+- Test only the machine and services deployed for the authorized room.
+- Do not publish VPN profiles, credentials, flags, target-specific exploitation steps or active-room walkthroughs.
+- Do not commit raw packet captures or sensitive operational notes.
+- Keep examples in the knowledge base generic and reusable.
