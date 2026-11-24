@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080a0d" />
+    <meta
+      name="description"
+      content="Brooklyn Nine-Nine — an educational TryHackMe penetration-testing lab and cybersecurity portfolio project."
+    />
+    <title>Precinct 99 // Cyber Operations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="noise-layer" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Precinct 99 home">
+        <span class="brand-mark">99</span>
+        <span class="brand-copy">
+          <strong>PRECINCT <b>99</b></strong>
+          <small>CYBER OPERATIONS DIVISION</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#briefing">BRIEFING</a>
+        <a href="#operations">OPERATIONS</a>
+        <a href="#toolkit">TOOLKIT</a>
+        <a href="#field-notes">FIELD NOTES</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <span class="live-indicator"><i></i> LAB ENVIRONMENT</span>
+        <a class="repo-link" href="https://github.com/john-root-opsec/tryhackme-brooklyn-nine-nine" target="_blank" rel="noreferrer">
+          GITHUB <span aria-hidden="true">↗</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero-banner" aria-label="Brooklyn Nine-Nine project banner">
+        <img
+          class="hero-banner-image"
+          data-banner
+          src="../assets/brooklyn-nine-nine-banner.jpg"
+          alt="Brooklyn Nine-Nine cast promotional image"
+        />
+        <div class="hero-banner-overlay"></div>
+        <div class="banner-caption">
+          <span class="eyebrow"><span class="eyebrow-line"></span> SPECIAL INVESTIGATION / 001</span>
+          <span class="banner-side-label">BROOKLYN • NEW YORK<br />CYBER TRAINING UNIT</span>
+        </div>
+        <div class="banner-missing" data-banner-status hidden>
+          PROJECT ARTWORK PENDING — upload assets/brooklyn-nine-nine-banner.jpg
+        </div>
+      </section>
+
+      <section class="hero-layout" id="briefing">
+        <div class="hero-copy">
+          <div class="case-kicker">
+            <span class="kicker-box">CASE FILE 001</span>
+            <span>TRYHACKME / BROOKLYN NINE-NINE</span>
+          </div>
+
+          <h1>EVERY CLUE<br />LEAVES A <em>TRACE.</em></h1>
+
+          <p class="hero-description">
+            A practical Linux penetration-testing study. Investigate the
+            attack surface, understand exposed services, and learn how
+            misconfigurations can become security risks.
+          </p>
+
+          <div class="hero-tags" aria-label="Project attributes">
+            <span><i class="tag-dot yellow"></i> OFFENSIVE SECURITY</span>
+            <span><i class="tag-dot green"></i> KALI LINUX</span>
+            <span><i class="tag-dot red"></i> LAB IN PROGRESS</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://tryhackme.com/room/brooklynninenine" target="_blank" rel="noreferrer">
+              OPEN THE CASE <span aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-quiet" href="#operations">
+              EXPLORE THE BRIEFING <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <div class="hero-footnote">
+            <span class="mono-label">AUTHORIZED TRAINING ENVIRONMENT</span>
+            <span class="footnote-rule"></span>
+            <span class="mono-label">NO LIVE TARGET DATA</span>
+          </div>
+        </div>
+
+        <aside class="globe-panel" aria-label="Simulated network visualization">
+          <div class="panel-topline">
+            <span><i class="status-pulse"></i> GLOBAL LINK MAP</span>
+            <span class="mono-label">SIMULATION / 3D</span>
+          </div>
+
+          <div class="globe-stage" id="globe-stage">
+            <div class="globe-loading" data-globe-fallback>
+              <span class="loading-ring"></span>
+              <strong>INITIALIZING GLOBE</strong>
+              <small>WebGL visualization will appear here</small>
+            </div>
+          </div>
+
+          <div class="globe-overlay-label label-north">N 40° 42' 46.08"</div>
+          <div class="globe-overlay-label label-east">SYSTEM / SIM-001</div>
+
+          <div class="globe-footer">
+            <div>
+              <span class="metric-label">VISUALIZATION MODE</span>
+              <strong>SIMULATED ROUTES</strong>
+            </div>
+            <button class="rotation-toggle" type="button" data-rotation-toggle aria-pressed="true">
+              <span class="toggle-indicator"></span>
+              <span data-rotation-label>AUTO ROTATE ON</span>
+            </button>
+          </div>
+          <p class="simulation-note">Illustrative geographic points and arcs only. Not real traffic or threat intelligence.</p>
+        </aside>
+      </section>
+
+      <section class="signal-strip" aria-label="Project status">
+        <div class="signal-cell">
+          <span class="signal-index">01 / PLATFORM</span>
+          <strong>TRYHACKME</strong>
+          <small>TRAINING ROOM</small>
+        </div>
+        <div class="signal-cell">
+          <span class="signal-index">02 / ENVIRONMENT</span>
+          <strong>KALI LINUX</strong>
+          <small>ATTACKER WORKSTATION</small>
+        </div>
+        <div class="signal-cell">
+          <span class="signal-index">03 / PROJECT STATE</span>
+          <strong class="yellow-text">IN PROGRESS</strong>
+          <small>LEARNING & DOCUMENTATION</small>
+        </div>
+        <div class="signal-cell">
+          <span class="signal-index">04 / DATA SOURCE</span>
+          <strong>DEMO DATA</strong>
+          <small>NO LIVE TELEMETRY</small>
+        </div>
+      </section>
+
+      <section class="content-section" id="operations">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow"><span class="eyebrow-line"></span> INVESTIGATION FRAMEWORK</span>
+            <h2>THE <em>OPERATIONS</em> BOARD</h2>
+          </div>
+          <span class="section-code">P99 / OPS / 001</span>
+        </div>
+
+        <div class="operations-grid">
+          <article class="brief-card mission-card">
+            <div class="card-heading">
+              <span class="card-number">A</span>
+              <span class="mono-label">MISSION BRIEF</span>
+              <span class="card-corner" aria-hidden="true">↗</span>
+            </div>
+            <h3>Understand the system.<br /><em>Then test the assumptions.</em></h3>
+            <p>
+              This project follows a structured learning path through network
+              reconnaissance, service enumeration, Linux security concepts,
+              and evidence-based security assessment.
+            </p>
+            <div class="card-divider"></div>
+            <div class="mission-meta">
+              <span><small>ROOM</small><b>BROOKLYN NINE-NINE</b></span>
+              <span><small>MISSION TYPE</small><b>EDUCATIONAL PENTEST</b></span>
+            </div>
+          </article>
+
+          <article class="brief-card phase-card">
+            <div class="card-heading">
+              <span class="card-number">B</span>
+              <span class="mono-label">LEARNING SEQUENCE</span>
+            </div>
+            <ol class="phase-list">
+              <li><span class="phase-node"></span><span class="phase-title">Network reconnaissance</span><span class="phase-state">STUDY</span></li>
+              <li><span class="phase-node"></span><span class="phase-title">Service enumeration</span><span class="phase-state">PLANNED</span></li>
+              <li><span class="phase-node"></span><span class="phase-title">Web surface review</span><span class="phase-state">PLANNED</span></li>
+              <li><span class="phase-node"></span><span class="phase-title">Linux security analysis</span><span class="phase-state">PLANNED</span></li>
+              <li><span class="phase-node"></span><span class="phase-title">Privilege boundaries</span><span class="phase-state">PLANNED</span></li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section toolkit-section" id="toolkit">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow"><span class="eyebrow-line"></span> FIELD EQUIPMENT</span>
+            <h2>TOOLS OF THE <em>TRADE</em></h2>
+          </div>
+          <span class="section-code">P99 / KIT / 002</span>
+        </div>
+
+        <div class="tool-grid">
+          <article class="tool-item">
+            <span class="tool-symbol">⌕</span>
+            <div><h3>NMAP</h3><p>Network discovery & port scanning</p></div>
+            <span class="tool-category">RECON</span>
+          </article>
+          <article class="tool-item">
+            <span class="tool-symbol">⌗</span>
+            <div><h3>GOBUSTER</h3><p>Web content discovery</p></div>
+            <span class="tool-category">ENUM</span>
+          </article>
+          <article class="tool-item">
+            <span class="tool-symbol">⟐</span>
+            <div><h3>HYDRA</h3><p>Authentication security testing</p></div>
+            <span class="tool-category">AUTH</span>
+          </article>
+          <article class="tool-item">
+            <span class="tool-symbol">⌁</span>
+            <div><h3>WIRESHARK</h3><p>Network protocol analysis</p></div>
+            <span class="tool-category">TRAFFIC</span>
+          </article>
+          <article class="tool-item">
+            <span class="tool-symbol">$_</span>
+            <div><h3>KALI LINUX</h3><p>Security testing workstation</p></div>
+            <span class="tool-category">SYSTEM</span>
+          </article>
+          <article class="tool-item">
+            <span class="tool-symbol">⇄</span>
+            <div><h3>SSH / FTP</h3><p>Remote access & file transfer protocols</p></div>
+            <span class="tool-category">SERVICES</span>
+          </article>
+        </div>
+        <p class="section-footnote">Tool list represents the planned study toolkit; it is not a claim that every tool has already been used.</p>
+      </section>
+
+      <section class="content-section field-notes-section" id="field-notes">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow"><span class="eyebrow-line"></span> KNOWLEDGE ARCHIVE</span>
+            <h2>FIELD <em>NOTES</em></h2>
+          </div>
+          <span class="section-code">P99 / DOCS / 003</span>
+        </div>
+
+        <div class="notes-grid">
+          <a class="note-link" href="../docs/LEARNING-PLAN.md">
+            <span class="note-type">DOCUMENT / 001</span>
+            <strong>Learning plan</strong>
+            <span>Study scope, principles, and documentation workflow.</span>
+            <b aria-hidden="true">↗</b>
+          </a>
+          <a class="note-link" href="../tools/README.md">
+            <span class="note-type">REFERENCE / 001</span>
+            <strong>Tool reference</strong>
+            <span>Purpose and responsible use of the selected toolkit.</span>
+            <b aria-hidden="true">↗</b>
+          </a>
+          <a class="note-link" href="https://github.com/john-root-opsec/tryhackme-brooklyn-nine-nine" target="_blank" rel="noreferrer">
+            <span class="note-type">SOURCE / GITHUB</span>
+            <strong>Repository</strong>
+            <span>Project files, version history, and future updates.</span>
+            <b aria-hidden="true">↗</b>
+          </a>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <span class="brand-mark">99</span>
+          <div><strong>PRECINCT 99 / CYBER OPERATIONS</strong><small>BROOKLYN NINE-NINE • TRYHACKME LAB</small></div>
+        </div>
+        <p>Educational project. Authorized environments only. Simulation graphics are not live network data.</p>
+        <span class="footer-signoff">JOHN ROOT <i>•</i> OFFENSIVE SECURITY IN TRAINING</span>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
