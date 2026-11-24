@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="t d">
+<title id="t">Brooklyn Nine-Nine Cybersecurity Lab</title>
+<desc id="d">Dark hacker-style banner with neon green technical grid, cyber globe and Brooklyn Nine-Nine project title.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111a18"/><stop offset=".55" stop-color="#080c0b"/><stop offset="1" stop-color="#050706"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#39ff88" stop-opacity=".24"/><stop offset="1" stop-color="#39ff88" stop-opacity="0"/></radialGradient>
+  <linearGradient id="green" x1="0" x2="1"><stop stop-color="#b7ffd3"/><stop offset=".45" stop-color="#39ff88"/><stop offset="1" stop-color="#1bbd69"/></linearGradient>
+  <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#67c995" stroke-opacity=".10"/><circle cx="0" cy="0" r="1" fill="#39ff88" fill-opacity=".35"/></pattern>
+  <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0 0H4" stroke="#fff" stroke-opacity=".025"/></pattern>
+  <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+  <filter id="neon"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1200" height="300" fill="url(#bg)"/>
+<rect width="1200" height="300" fill="url(#grid)"/>
+<rect width="1200" height="300" fill="url(#scan)"/>
+<ellipse cx="930" cy="150" rx="330" ry="230" fill="url(#glow)"/>
+<path d="M0 8H1200" stroke="#39ff88" stroke-width="3" opacity=".85"/>
+<path d="M0 286H1200" stroke="#39ff88" stroke-opacity=".5"/>
+<path d="M0 292H1200" stroke="#f5d90a" stroke-opacity=".55"/>
+<g fill="none" stroke="#39ff88" stroke-opacity=".55">
+  <path d="M640 44h90l18 18h52"/><path d="M650 68h54l16 16h54"/>
+  <path d="M1060 54h65v30h50"/><path d="M1034 242h85v-26h64"/>
+  <circle cx="800" cy="62" r="3" fill="#39ff88"/><circle cx="774" cy="84" r="3" fill="#39ff88"/>
+  <circle cx="1175" cy="84" r="3" fill="#39ff88"/><circle cx="1183" cy="216" r="3" fill="#39ff88"/>
+</g>
+<g font-family="monospace">
+  <text x="62" y="53" fill="#39ff88" font-size="12" letter-spacing="3">PRECINCT 99 / CYBER OPERATIONS DIVISION</text>
+  <path d="M62 68H560" stroke="#39ff88" stroke-opacity=".45"/>
+  <text x="58" y="151" fill="#eef8f0" font-family="Arial,sans-serif" font-size="78" font-weight="900" letter-spacing="-3">BROOKLYN</text>
+  <text x="58" y="225" fill="url(#green)" font-family="Arial,sans-serif" font-size="78" font-weight="900" letter-spacing="-3" filter="url(#neon)">NINE-NINE</text>
+  <text x="63" y="258" fill="#b6c9bc" font-size="11" letter-spacing="2">TRYHACKME LAB / LINUX PENETRATION TESTING / CASE 001</text>
+</g>
+<g transform="translate(927 151)" fill="none">
+  <circle r="115" stroke="#39ff88" stroke-opacity=".22" stroke-width="1"/>
+  <circle r="95" stroke="#39ff88" stroke-opacity=".62" stroke-width="1.5"/>
+  <ellipse rx="95" ry="39" stroke="#39ff88" stroke-opacity=".42"/>
+  <ellipse rx="95" ry="68" stroke="#39ff88" stroke-opacity=".35"/>
+  <ellipse rx="40" ry="95" stroke="#39ff88" stroke-opacity=".45"/>
+  <ellipse rx="70" ry="95" stroke="#39ff88" stroke-opacity=".22"/>
+  <path d="M-95 0H95M0-95V95" stroke="#39ff88" stroke-opacity=".32" stroke-dasharray="4 7"/>
+  <path d="M-66-65L-12-20L29-36L73 15L32 61" stroke="#39ff88" stroke-width="1.7" stroke-opacity=".8" filter="url(#neon)"/>
+  <path d="M-66-65L-12-20L29-36L73 15L32 61" stroke="#d5ffe3" stroke-width="1" stroke-dasharray="2 8"/>
+  <g fill="#39ff88" filter="url(#neon)"><circle cx="-66" cy="-65" r="4"/><circle cx="-12" cy="-20" r="4"/><circle cx="29" cy="-36" r="4"/><circle cx="73" cy="15" r="4"/><circle cx="32" cy="61" r="4"/></g>
+  <circle r="126" stroke="#f5d90a" stroke-opacity=".55" stroke-dasharray="2 12"/>
+</g>
+<g font-family="monospace" font-size="9" letter-spacing="1.5" fill="#9bb1a2">
+  <text x="1080" y="278" text-anchor="end">AUTHORIZED LAB // SYNTHETIC VISUALS</text>
+  <text x="63" y="24" fill="#f5d90a">[ SYSTEM ONLINE ]</text>
+</g>
+</svg>

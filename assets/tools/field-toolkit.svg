@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="310" viewBox="0 0 1200 310" role="img" aria-labelledby="t d">
+<title id="t">Brooklyn Nine-Nine lab field toolkit</title>
+<desc id="d">Neon green icon grid for Terminal, Kali Linux, OpenVPN, Nmap, Gobuster, ExifTool, Hydra, FTP, SSH and GTFOBins less utility.</desc>
+<defs>
+ <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#14211a"/><stop offset="1" stop-color="#0a100d"/></linearGradient>
+ <linearGradient id="accent" x1="0" x2="1"><stop stop-color="#baffd4"/><stop offset=".55" stop-color="#39ff88"/><stop offset="1" stop-color="#0eab5b"/></linearGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1200" height="310" rx="4" fill="#080d0a" stroke="#244b34"/>
+<text x="28" y="25" font-family="monospace" font-size="10" letter-spacing="2.5" fill="#f5d90a">FIELD TOOLKIT / AUTHORIZED LAB USE</text>
+<text x="1170" y="25" text-anchor="end" font-family="monospace" font-size="9" letter-spacing="1.5" fill="#70977d">10 TOOLS / CONCEPTS</text>
+<g transform="translate(22 42)">
+ <rect width="216" height="119" rx="4" fill="url(#card)" stroke="#235338"/>
+ <path d="M0 0H216" stroke="#39ff88" stroke-opacity=".7"/>
+ <g transform="translate(17 27)" fill="none" stroke="url(#accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"><rect x="0" y="0" width="48" height="36" rx="4"/><path d="M0 10H48"/><circle cx="7" cy="5" r="1.3" fill="#f5d90a" stroke="none"/><circle cx="13" cy="5" r="1.3" fill="#39ff88" stroke="none"/><path d="M10 19l6 5-6 5M21 29h10"/></g>
+ <text x="80" y="53" font-family="monospace" font-size="12" font-weight="700" letter-spacing=".7" fill="#effff3">TERMINAL</text>
+ <text x="80" y="72" font-family="monospace" font-size="8" letter-spacing=".7" fill="#75ae89">LOCAL SHELL</text>
+ <text x="198" y="104" text-anchor="end" font-family="monospace" font-size="8" fill="#f5d90a">01</text>
+</g><g transform="translate(257 42)">
+ <rect width="216" height="119" rx="4" fill="url(#card)" stroke="#235338"/>
+ <path d="M0 0H216" stroke="#39ff88" stroke-opacity=".7"/>
+ <g transform="translate(17 27)" fill="none" stroke="url(#accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"><path d="M8 31L23 6l9 10 8-7 1 24H8Z"/><path d="M17 27l7-12 9 12M23 6l-3 8"/></g>
+ <text x="80" y="53" font-family="monospace" font-size="12" font-weight="700" letter-spacing=".7" fill="#effff3">KALI LINUX</text>
+ <text x="80" y="72" font-family="monospace" font-size="8" letter-spacing=".7" fill="#75ae89">ATTACK PLATFORM</text>
+ <text x="198" y="104" text-anchor="end" font-family="monospace" font-size="8" fill="#f5d90a">02</text>
+</g><g transform="translate(492 42)">
+ <rect width="216" height="119" rx="4" fill="url(#card)" stroke="#235338"/>
+ <path d="M0 0H216" stroke="#39ff88" stroke-opacity=".7"/>
+ <g transform="translate(17 27)" fill="none" stroke="url(#accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"><path d="M24 3l16 6v12c0 10-7 17-16 21C15 38 8 31 8 21V9Z"/><rect x="16" y="20" width="16" height="12" rx="2"/><path d="M19 20v-4a5 5 0 0110 0v4"/></g>
+ <text x="80" y="53" font-family="monospace" font-size="12" font-weight="700" letter-spacing=".7" fill="#effff3">OPENVPN</text>
+ <text x="80" y="72" font-family="monospace" font-size="8" letter-spacing=".7" fill="#75ae89">VPN TUNNEL</text>
+ <text x="198" y="104" text-anchor="end" font-family="monospace" font-size="8" fill="#f5d90a">03</text>
+</g><g transform="translate(727 42)">
+ <rect width="216" height="119" rx="4" fill="url(#card)" stroke="#235338"/>
+ <path d="M0 0H216" stroke="#39ff88" stroke-opacity=".7"/>
+ <g transform="translate(17 27)" fill="none" stroke="url(#accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"><circle cx="24" cy="23" r="19"/><circle cx="24" cy="23" r="12"/><circle cx="24" cy="23" r="5"/><path d="M24 23L39 9M24 23L24 4"/></g>
+ <text x="80" y="53" font-family="monospace" font-size="12" font-weight="700" letter-spacing=".7" fill="#effff3">NMAP</text>
+ <text x="80" y="72" font-family="monospace" font-size="8" letter-spacing=".7" fill="#75ae89">PORT RECON</text>
+ <text x="198" y="104" text-anchor="end" font-family="monospace" font-size="8" fill="#f5d90a">04</text>
+</g><g transform="translate(962 42)">
+ <rect width="216" height="119" rx="4" fill="url(#card)" stroke="#235338"/>
+ <path d="M0 0H216" stroke="#39ff88" stroke-opacity=".7"/>
+ <g transform="translate(17 27)" fill="none" stroke="url(#accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"><path d="M4 12h17l4 5h19v21H4Z"/><path d="M4 12V7h15l4 5"/><circle cx="32" cy="27" r="7"/><path d="M37 32l7 7"/></g>
+ <text x="80" y="53" font-family="monospace" font-size="12" font-weight="700" letter-spacing=".7" fill="#effff3">GOBUSTER</text>
+ <text x="80" y="72" font-family="monospace" font-size="8" letter-spacing=".7" fill="#75ae89">WEB DISCOVERY</text>
+ <text x="198" y="104" text-anchor="end" font-family="monospace" font-size="8" fill="#f5d90a">05</text>
+</g><g transform="translate(22 177)">
+ <rect width="216" height="119" rx="4" fill="url(#card)" stroke="#235338"/>
+ <path d="M0 0H216" stroke="#39ff88" stroke-opacity=".7"/>
+ <g transform="translate(17 27)" fill="none" stroke="url(#accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"><rect x="5" y="5" width="38" height="34" rx="3"/><circle cx="17" cy="16" r="5"/><path d="M10 33l10-9 6 5 6-7 7 11M29 11h9M29 16h9"/></g>
+ <text x="80" y="53" font-family="monospace" font-size="12" font-weight="700" letter-spacing=".7" fill="#effff3">EXIFTOOL</text>
+ <text x="80" y="72" font-family="monospace" font-size="8" letter-spacing=".7" fill="#75ae89">METADATA REVIEW</text>
+ <text x="198" y="104" text-anchor="end" font-family="monospace" font-size="8" fill="#f5d90a">06</text>
+</g><g transform="translate(257 177)">
+ <rect width="216" height="119" rx="4" fill="url(#card)" stroke="#235338"/>
+ <path d="M0 0H216" stroke="#39ff88" stroke-opacity=".7"/>
+ <g transform="translate(17 27)" fill="none" stroke="url(#accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"><circle cx="24" cy="11" r="6"/><circle cx="10" cy="31" r="6"/><circle cx="38" cy="31" r="6"/><path d="M21 17l-8 9m14-9 8 9M16 31h16"/></g>
+ <text x="80" y="53" font-family="monospace" font-size="12" font-weight="700" letter-spacing=".7" fill="#effff3">HYDRA</text>
+ <text x="80" y="72" font-family="monospace" font-size="8" letter-spacing=".7" fill="#75ae89">AUTH TESTING</text>
+ <text x="198" y="104" text-anchor="end" font-family="monospace" font-size="8" fill="#f5d90a">07</text>
+</g><g transform="translate(492 177)">
+ <rect width="216" height="119" rx="4" fill="url(#card)" stroke="#235338"/>
+ <path d="M0 0H216" stroke="#39ff88" stroke-opacity=".7"/>
+ <g transform="translate(17 27)" fill="none" stroke="url(#accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"><path d="M7 14h32m-8-8 8 8-8 8M41 33H9m8-8-8 8 8 8"/></g>
+ <text x="80" y="53" font-family="monospace" font-size="12" font-weight="700" letter-spacing=".7" fill="#effff3">FTP</text>
+ <text x="80" y="72" font-family="monospace" font-size="8" letter-spacing=".7" fill="#75ae89">FILE TRANSFER</text>
+ <text x="198" y="104" text-anchor="end" font-family="monospace" font-size="8" fill="#f5d90a">08</text>
+</g><g transform="translate(727 177)">
+ <rect width="216" height="119" rx="4" fill="url(#card)" stroke="#235338"/>
+ <path d="M0 0H216" stroke="#39ff88" stroke-opacity=".7"/>
+ <g transform="translate(17 27)" fill="none" stroke="url(#accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"><rect x="4" y="5" width="40" height="34" rx="4"/><path d="M4 14h40M12 24l6 5-6 5M23 34h10"/></g>
+ <text x="80" y="53" font-family="monospace" font-size="12" font-weight="700" letter-spacing=".7" fill="#effff3">SSH</text>
+ <text x="80" y="72" font-family="monospace" font-size="8" letter-spacing=".7" fill="#75ae89">REMOTE SHELL</text>
+ <text x="198" y="104" text-anchor="end" font-family="monospace" font-size="8" fill="#f5d90a">09</text>
+</g><g transform="translate(962 177)">
+ <rect width="216" height="119" rx="4" fill="url(#card)" stroke="#235338"/>
+ <path d="M0 0H216" stroke="#39ff88" stroke-opacity=".7"/>
+ <g transform="translate(17 27)" fill="none" stroke="url(#accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"><path d="M10 4h20l9 9v27H10Z"/><path d="M30 4v10h9M16 22h16M16 28h13M16 34h8"/></g>
+ <text x="80" y="53" font-family="monospace" font-size="10" font-weight="700" letter-spacing=".7" fill="#effff3">GTFOBINS / LESS</text>
+ <text x="80" y="72" font-family="monospace" font-size="8" letter-spacing=".7" fill="#75ae89">LINUX PRIVILEGE REFERENCE</text>
+ <text x="198" y="104" text-anchor="end" font-family="monospace" font-size="8" fill="#f5d90a">010</text>
+</g>
+<text x="28" y="294" font-family="monospace" font-size="8" letter-spacing="1" fill="#567a62">TOOL ICONS ARE CUSTOM VISUAL MARKS — REFER TO TOOL NAMES AND OFFICIAL DOCUMENTATION FOR IDENTIFICATION</text>
+</svg>
