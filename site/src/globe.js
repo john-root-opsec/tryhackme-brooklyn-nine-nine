@@ -126,7 +126,6 @@ export function mountCyberGlobe(container) {
     .atmosphereColor(COLORS.green)
     .atmosphereAltitude(0.18)
     .showGraticules(true)
-    .graticuleColor(() => "rgba(57, 255, 136, 0.14)")
     .arcsData(DEMO_ARCS)
     .arcColor((datum) => datum.color)
     .arcStroke(0.52)
@@ -196,15 +195,22 @@ export function mountCyberGlobe(container) {
   resizeObserver.observe(container);
   resize();
 
+  const stopLoop = () => {
+    if (animationFrame) {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    }
+  };
+
   const visibilityObserver = new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
     if (visible) startLoop();
-    else cancelAnimationFrame(animationFrame);
+    else stopLoop();
   }, { threshold: 0.04 });
   visibilityObserver.observe(container);
 
   const onVisibilityChange = () => {
-    if (document.hidden) cancelAnimationFrame(animationFrame);
+    if (document.hidden) stopLoop();
     else startLoop();
   };
   document.addEventListener("visibilitychange", onVisibilityChange);
@@ -212,6 +218,7 @@ export function mountCyberGlobe(container) {
   const clock = new THREE.Clock();
 
   const renderFrame = () => {
+    animationFrame = 0;
     if (disposed || !visible || document.hidden) return;
 
     const delta = Math.min(clock.getDelta(), 0.05);
@@ -245,7 +252,7 @@ export function mountCyberGlobe(container) {
     },
     dispose() {
       disposed = true;
-      cancelAnimationFrame(animationFrame);
+      stopLoop();
       resizeObserver.disconnect();
       visibilityObserver.disconnect();
       document.removeEventListener("visibilitychange", onVisibilityChange);
