@@ -1,0 +1,22 @@
+{
+  "name": "precinct-99-cyber-operations",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Three.js visual companion for the Brooklyn Nine-Nine TryHackMe learning project.",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "dependencies": {
+    "three": "^0.187.0",
+    "three-globe": "^2.45.6"
+  },
+  "devDependencies": {
+    "vite": "^8.3.8"
+  }
+}
