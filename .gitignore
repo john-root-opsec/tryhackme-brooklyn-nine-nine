@@ -5,10 +5,25 @@ node_modules/
 site/dist/
 site/.vite/
 
-# Local environment
+# Local environment and secrets
 .env
 .env.*
 !.env.example
+*.ovpn
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+
+# Local evidence and potentially sensitive captures
+*.pcap
+*.pcapng
+/captures/
+/evidence/private/
+/private-notes/
+/wordlists/
 
 # Logs
 npm-debug.log*
