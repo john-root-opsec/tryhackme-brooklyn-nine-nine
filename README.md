@@ -80,12 +80,13 @@ The goal is to develop a repeatable penetration-testing mindset: understand the 
 | Phase | Focus | What we want to understand |
 |:--:|:--|:--|
 | **00** | Environment setup | VPN connectivity, target scope and local tooling. |
-| **01** | Reconnaissance | Host availability, ports and network behavior. |
-| **02** | Service enumeration | What each exposed service does and what its configuration reveals. |
-| **03** | Web review | HTTP behavior, site structure and publicly exposed resources. |
-| **04** | Linux security | Users, groups, file permissions and service boundaries. |
-| **05** | Privilege concepts | How misconfigurations can cross privilege boundaries and how to prevent them. |
-| **06** | Reporting | Record observations, validate assumptions and recommend remediation. |
+| **01** | Web reconnaissance | HTTP, browser inspection, source review and content discovery. |
+| **02** | Network scanning | TCP, SYN scanning, port states and Nmap interpretation. |
+| **03** | Service / FTP review | Service identification, FTP behavior and file permissions. |
+| **04** | SSH / authentication | Remote access, password security and authentication controls. |
+| **05** | Linux enumeration | Users, groups, processes, directories and permissions. |
+| **06** | Privilege escalation | Sudo policy, binary behavior and privilege boundaries. |
+| **07** | Defensive review | Detection, hardening, remediation and reporting. |
 
 **Method:** learn the concept → perform the authorized lab exercise → interpret the output → document the defensive lesson.
 
@@ -97,11 +98,20 @@ The goal is to develop a repeatable penetration-testing mindset: understand the 
 
 ### PROJECT DOCUMENTATION
 
-| Resource | Description |
+<div align="center">
+  <img src="assets/motion/04-learning-log.svg" width="100%" alt="Learning log and documentation archive" />
+</div>
+
+**Documentation is divided into four tracks:**
+
+| Track | What it contains |
 |:--|:--|
-| [Learning Plan](docs/LEARNING-PLAN.md) | Study sequence, evidence template and progress checklist. |
-| [Tool Reference](tools/README.md) | General purpose and responsible use of the lab toolkit. |
-| [Interactive Frontend](site/) | Three.js globe and cyber-operations interface source. |
+| [Fundamentals](docs/README.md#01--fundamentals) | Networking, TCP/IP, HTTP, Linux, permissions and authentication. |
+| [Lab Methodology](docs/README.md#02--lab-methodology) | Instructor-aligned sequence: environment, web, network, FTP, SSH, Linux and privilege concepts. |
+| [Defensive Security](docs/README.md#03--defensive-security) | Detection, monitoring, hardening and remediation. |
+| [References & Templates](docs/README.md#04--references--templates) | Official sources and reusable technical-note templates. |
+
+**Main navigation:** [Documentation Index](docs/README.md) · [Learning Plan](docs/LEARNING-PLAN.md) · [Tool Reference](tools/README.md) · [Three.js Frontend](site/)
 
 ### FRONTEND / VISUAL SYSTEM
 
