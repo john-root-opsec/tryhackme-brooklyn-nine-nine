@@ -5,11 +5,8 @@
 
 <div align="center">
 
-  <img
-    src="assets/brooklyn-nine-nine-banner.jpg"
-    alt="Brooklyn Nine-Nine — project banner"
-    width="100%"
-  />
+  <p><strong>ORIGINAL BROOKLYN NINE-NINE ARTWORK</strong></p>
+  <p><em>Banner asset upload pending — add the original image at <code>assets/brooklyn-nine-nine-banner.jpg</code> to display it here.</em></p>
 
   <br />
 
@@ -78,11 +75,11 @@ These are tools and technologies planned for study or reference; this list does 
 
 ## ◈ INTERACTIVE EXPERIENCE
 
-The repository's visual companion is planned as a separate web experience built with **Three.js**, **three-globe**, **Vite**, HTML, CSS and JavaScript.
+The repository now contains the source for a separate web experience built with **Three.js**, **three-globe**, **Vite**, HTML, CSS and JavaScript under `site/`.
 
-The globe will use clearly labelled synthetic demonstration data. It will not represent real network telemetry, live attacks, or threat intelligence.
+The globe uses clearly labelled synthetic demonstration data. It does not represent real network telemetry, live attacks, or threat intelligence.
 
-**Interactive site:** coming after local implementation and verification.
+**Interactive site:** source implemented; GitHub Pages build and deployment are still being verified.
 
 ## ◈ REPOSITORY LAYOUT
 
