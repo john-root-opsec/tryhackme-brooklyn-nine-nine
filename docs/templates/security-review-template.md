@@ -1,43 +1,43 @@
-# Security Review — [Generic System or Topic]
+# Security Review — [Service or Control]
 
-> Do not use this template to publish restricted active-room findings. Keep sensitive evidence in an approved private evidence store.
+> Use this template for generic, authorized reviews. Do not publish restricted active-room findings.
 
-## Scope and authorization
+## Scope
 
-Describe the authorized system boundary in generic terms.
+Describe the authorized system boundary without exposing live target details.
 
-## Asset / service
+## Service / asset
 
-Identify the class of asset or service being reviewed.
+Identify the type of service or system component being reviewed.
 
-## Security condition
+## Review objective
 
-Describe the configuration or behavior being evaluated without exposing secrets.
+State the security question being evaluated.
 
-## Evidence
+## Evidence classification
 
-Record sanitized, minimal evidence. Separate direct observation from interpretation.
+Separate:
+- **Observed:** directly recorded behavior;
+- **Interpretation:** explanation supported by the observation;
+- **Hypothesis:** a possibility that requires validation;
+- **Unknown:** information not established by the available evidence.
 
-## Impact
+## Potential impact
 
-Explain confidentiality, integrity and availability implications.
-
-## Likelihood and assumptions
-
-List the conditions required for the risk to materialize. Do not present assumptions as facts.
+Describe confidentiality, integrity or availability implications without overstating exploitability.
 
 ## Detection opportunities
 
-Identify relevant logs, telemetry and monitoring points.
+Identify relevant application, network, authentication or operating-system telemetry.
 
 ## Remediation
 
-Describe the corrective control and responsible owner.
+Describe the control that would reduce the risk.
 
 ## Verification
 
-Explain how the team can confirm the issue is resolved.
+Explain how to confirm that the remediation works and does not break legitimate access.
 
 ## References
 
-Link to vendor documentation, standards or security guidance.
+Link to the relevant vendor documentation, protocol standard or security guidance.
