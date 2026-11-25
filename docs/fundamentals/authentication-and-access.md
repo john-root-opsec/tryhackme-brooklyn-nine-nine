@@ -1,37 +1,65 @@
-# Authentication & Access Fundamentals
+# Authentication & Access — Lab Fundamentals
 
-## Authentication, authorization and accounting
+## Why this topic appears in the lesson
 
-- **Authentication:** establishes who or what is requesting access.
-- **Authorization:** determines which actions that identity may perform.
-- **Accounting:** records activity for review and audit.
+The instructor reviews file-transfer access first, then studies weak-password risk and remote SSH authentication. These are separate services and should be evaluated independently.
 
-A successful login does not imply administrative authorization.
+## FTP authentication
 
-## Password security
+FTP is a file-transfer protocol that uses a control connection and a separate data connection. Traditional FTP does not encrypt credentials or file contents by default.
 
-Defenses include unique passwords, password managers, multi-factor authentication, breached-password screening, rate limiting and monitoring.
+An FTP review should establish:
+- which authentication modes are enabled;
+- whether anonymous access is permitted;
+- which directories can be listed;
+- which files can be downloaded;
+- whether upload, modification or deletion is permitted;
+- whether access is restricted to the intended users.
 
-Systems should store password verifiers using purpose-built password hashing schemes with unique salts and appropriate work factors—not reversible encryption or plain text.
+A successful login alone does not establish that every file is readable or writable. Permissions must be assessed separately.
 
-## SSH
+### FTP, FTPS and SFTP
 
-SSH provides encrypted remote access. Authentication may use passwords, public-key cryptography or other configured methods.
+- **FTP:** traditional file-transfer protocol; credentials and data are not protected by encryption by default.
+- **FTPS:** FTP protected with TLS.
+- **SFTP:** file-transfer subsystem carried over SSH; it is not FTP with TLS added.
 
-Public-key authentication uses a private key kept by the client and a corresponding public key authorized by the server. Private keys must never be committed to source control.
+## Password quality and wordlists
 
-Defensive controls include disabling unused authentication methods, restricting who may log in, protecting private keys, monitoring failed and successful logins and limiting network exposure.
+The lesson introduces RockYou as a password wordlist. A wordlist is a dataset of candidate passwords; it is not a credential database for a particular system and does not prove that an account uses one of its entries.
 
-## FTP and secure alternatives
+Weak or reused passwords create risk because an attacker can test common candidates against an exposed authentication service.
 
-Traditional FTP does not provide confidentiality for credentials or file contents by default. FTPS adds TLS to FTP. SFTP is a file-transfer subsystem carried over SSH; it is not simply FTP with encryption.
+## Hydra and controlled authentication auditing
 
-## Password-guessing risk
+Hydra is used in the lesson to demonstrate password-based authentication testing in the authorized lab. The technical concepts to understand are:
+- username and password candidate inputs;
+- the target authentication service;
+- response handling and success detection;
+- attempt rate and service load;
+- account lockout and monitoring;
+- the distinction between a successful authentication and an authorized action.
 
-Repeated authentication attempts can indicate password spraying, brute-force attempts, credential stuffing or legitimate user error. A single failed login is not enough to classify an attack.
+Authentication testing must remain within the explicitly assigned room and accounts. Never test third-party accounts or production services.
 
-Defenses include rate limiting, multi-factor authentication, source/account monitoring and alerting on abnormal failure patterns.
+## SSH authentication
 
-## Scope and authorization
+SSH provides an encrypted channel for remote administration. The client verifies the server's host identity and then authenticates the user using a configured method.
 
-Authentication-testing tools must only be used against accounts and services explicitly included in the authorized exercise. Never test real users, public services or unrelated systems.
+Relevant controls include:
+- strong, unique credentials;
+- public-key authentication with protected private keys;
+- multi-factor authentication where appropriate;
+- limiting permitted users and source networks;
+- monitoring successful and failed logins;
+- rate limiting and alerting for repeated failures.
+
+A successful SSH session gives the permissions of the authenticated account. It does not automatically grant root access.
+
+## Defensive relevance
+
+- Disable anonymous FTP unless there is a documented business need.
+- Prefer encrypted file-transfer protocols.
+- Enforce unique, strong passwords and multi-factor authentication.
+- Restrict SSH exposure and allowed accounts.
+- Monitor repeated authentication failures and unusual login patterns.
