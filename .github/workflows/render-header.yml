@@ -1,0 +1,56 @@
+name: Render README Earth banner
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/motion/header-green-base.svg'
+      - 'tools/render_header.py'
+      - 'tools/render_header.mjs'
+      - 'tools/requirements-render.txt'
+      - '.github/workflows/render-header.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: tools/requirements-render.txt
+
+      - name: Install Cairo system library
+        run: sudo apt-get update && sudo apt-get install -y libcairo2
+
+      - name: Install renderer dependencies
+        run: python -m pip install -r tools/requirements-render.txt
+
+      - name: Render the animated Earth banner
+        run: node tools/render_header.mjs --frames 180 --duration 100 --preview /tmp/header-green-preview.png
+
+      - name: Remove downloaded source data from the worktree
+        run: rm -f assets/data/ne_110m_admin_0_countries.geojson
+
+      - name: Commit generated banner assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/motion/header-green-animated.gif assets/motion/header-green-static.png assets/motion/header-green.svg
+          if git diff --cached --quiet; then
+            echo 'Generated banner assets are already up to date.'
+            exit 0
+          fi
+          git commit -m 'assets: render real-data rotating Earth banner'
+          git push origin HEAD:main
