@@ -1,44 +1,38 @@
-# Technical Note — [Topic]
+# Technical Note — [Instructor Workflow Stage]
 
-> Use generic or sanitized examples only.
+> Use generic examples only. Keep active-room evidence and answer-bearing details in private notes.
+
+## Stage
+
+Instructor workflow step: [00–06]
 
 ## Objective
 
-What concept or technical question is being studied?
+What question is this step intended to answer?
 
-## Background
+## Tool / interface
 
-Explain the protocol, operating-system feature or security mechanism.
+Which tool or interface is used, and why is it appropriate?
 
-## Terminology
+## Technical basis
 
-| Term | Meaning |
-|:--|:--|
-| [Term] | [Definition] |
+Explain the protocol, file format, operating-system feature or security mechanism involved.
 
-## Workflow or concept model
+## Procedure summary
 
-Describe the process at a high level.
+Describe the method at a reusable level. Do not include active-room target addresses, credentials, file contents, flags or restricted exploit steps.
 
-## Example
+## Output interpretation
 
-Use a generic, non-target-specific example. Do not include credentials, private addresses, flags or active-room solution details.
+Explain what the tool or observation can establish and what it cannot establish.
 
-```text
-[Generic example]
-```
+## Security relevance
 
-## Interpretation
+Describe the potential exposure or misconfiguration and the conditions required for impact.
 
-Explain what the example demonstrates and what it does not prove.
+## Defensive control
 
-## Security implications
-
-Describe possible risks and preconditions.
-
-## Defensive considerations
-
-Describe prevention, detection and remediation.
+Describe prevention, monitoring or remediation.
 
 ## References
 
