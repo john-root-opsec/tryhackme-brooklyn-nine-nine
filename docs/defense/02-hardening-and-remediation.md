@@ -1,46 +1,61 @@
-# Hardening & Remediation
+# Hardening & Remediation — Lessons from the Lab
 
-## Purpose
+## Objective
 
-A penetration test is incomplete without explaining how to reduce the identified risk and verify that the correction works.
+Translate each area investigated in the room into a defensive control. A security review should end with a correction and a verification step.
 
-## Service exposure
+## Web server
 
-- Disable services that are not required.
-- Bind services to appropriate interfaces.
-- Restrict administrative services to trusted networks.
-- Use firewall rules and network segmentation.
-- Maintain accurate service inventories.
+- Remove unused files, backups and development artifacts from the web root.
+- Review page source and static assets before publication.
+- Strip unnecessary metadata from public images and documents.
+- Disable directory listing where it is not required.
+- Enforce authorization on the server.
+- Monitor repeated path-guessing and unusual HTTP responses.
+
+## Network exposure
+
+- Disable listeners that have no operational requirement.
+- Restrict services to trusted source networks.
+- Place administrative services behind suitable network controls.
+- Maintain an inventory of exposed ports and services.
+- Monitor unexpected connection attempts.
 
 ## FTP and file transfer
 
-- Avoid legacy cleartext FTP when secure alternatives are available.
-- Disable unnecessary anonymous access.
-- Restrict file permissions and transfer directories.
-- Monitor upload, download and deletion events.
-- Protect stored files and credentials.
+- Disable anonymous access unless it is explicitly required and safely constrained.
+- Prefer SFTP or FTPS over unencrypted FTP.
+- Restrict directory listing and file operations by role.
+- Separate upload areas from application and system files.
+- Monitor downloads, uploads, renames and deletions.
 
-## SSH
+## Passwords and SSH
 
-- Restrict allowed users and groups.
-- Prefer strong key-based authentication with appropriate key protection.
-- Disable unused authentication options.
-- Monitor authentication activity.
-- Keep server packages maintained.
+- Enforce unique, strong passwords and prevent known-compromised password choices.
+- Use multi-factor authentication where appropriate.
+- Prefer managed SSH keys with protected private keys.
+- Restrict SSH access to approved users and networks.
+- Apply rate limiting and monitor repeated authentication failures.
+- Remove stale accounts and rotate credentials after suspected exposure.
 
-## Linux privilege controls
+## Linux privileges
 
-- Apply least privilege.
-- Review sudoers entries regularly.
-- Avoid broad wildcard permissions.
-- Audit SUID/SGID binaries and Linux capabilities.
-- Protect privileged scripts and configuration files.
-- Remove stale accounts and unnecessary services.
+- Apply least privilege to user and service accounts.
+- Limit sudo rules to the exact required command and arguments.
+- Avoid unrestricted delegation of general-purpose utilities.
+- Review passwordless privileged commands.
+- Audit SUID/SGID permissions and Linux capabilities where relevant.
+- Protect privileged scripts, configuration files and parent directories.
 
 ## Verification
 
-A remediation is not complete when a configuration file is edited. Verify that the intended service behavior changed, legitimate users can still work, the risky access path is no longer available, logs show expected behavior and the change is documented.
+A change is complete only after its effect is tested. Verify that:
+- the unnecessary resource or service is no longer exposed;
+- legitimate users can still perform required tasks;
+- access permissions match the approved design;
+- authentication controls behave as expected;
+- logs capture the expected security events.
 
-## Risk communication
+## Reporting
 
-Describe the affected asset, security condition, potential impact, evidence, likelihood assumptions and recommended correction. Do not overstate exploitability when evidence is incomplete.
+Describe the affected service, the unsafe condition, potential impact, evidence, recommended control and how the correction was verified. Do not overstate exploitability when evidence is incomplete.
