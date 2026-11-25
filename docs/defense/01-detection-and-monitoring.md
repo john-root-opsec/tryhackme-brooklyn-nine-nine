@@ -1,42 +1,69 @@
-# Detection & Monitoring
+# Detection & Monitoring — Lessons from the Lab
 
-## Purpose
+## Objective
 
-The defensive view asks how an organization could observe, investigate and respond to activity associated with exposed services and account access.
+Connect the instructor's offensive workflow to the telemetry a system administrator or SOC analyst could use to detect similar activity.
 
-## Useful telemetry sources
+## Web reconnaissance
 
-| Source | Possible security value |
-|:--|:--|
-| Firewall logs | Allowed and denied connection attempts |
-| Network flow records | Source/destination pairs, ports, timing and volume |
-| Web server access logs | Paths, methods, status codes, user agents and request patterns |
-| SSH authentication logs | Successful and failed login events |
-| FTP server logs | Authentication and file-transfer activity |
-| Linux audit records | Changes to sensitive files and privileged actions |
-| Endpoint telemetry | Process execution, account changes and persistence indicators |
+Potential telemetry:
+- HTTP access logs showing repeated requests for candidate paths;
+- unusual request rates and repeated 403/404 responses;
+- requests for backup files, metadata files or unexpected static resources;
+- access to resources that are not part of normal site behavior.
 
-Exact log names and locations vary by distribution, service and configuration.
+A directory-discovery pattern may be a legitimate assessment or automated abuse. Correlate the source, time window, request sequence and authorization context.
 
-## Detection themes
+## Network scanning
 
-- Repeated authentication failures
-- Logins from unusual sources or at unusual times
-- Access to sensitive files outside normal patterns
-- Unexpected uploads or directory changes
-- New or modified privileged execution rules
-- Unexpected services listening on network interfaces
+Potential telemetry:
+- repeated connection attempts across multiple destination ports;
+- sequential or high-volume SYN packets;
+- firewall deny events;
+- IDS/IPS network-scan alerts.
 
-One event rarely proves malicious activity. Correlate source, identity, timing, host context and related events.
+One SYN packet is not proof of malicious scanning. Look for patterns and correlate them with the approved testing window.
 
-## Incident triage
+## FTP activity
+
+Potential telemetry:
+- anonymous or unusual authentication attempts;
+- directory listings and file downloads;
+- uploads, renames or deletions;
+- repeated access to directories outside normal usage.
+
+FTP logs should be correlated with file-system events where available.
+
+## SSH authentication
+
+Potential telemetry:
+- repeated authentication failures;
+- successful login after a sequence of failures;
+- logins outside expected source networks or time windows;
+- unusual account use or interactive sessions.
+
+A failed login alone does not prove a brute-force attack. Review volume, timing, source diversity and account context.
+
+## Privileged execution
+
+Potential telemetry:
+- sudo authorization and command-execution records;
+- execution of utilities with elevated identity;
+- changes to privileged files or system configuration;
+- unexpected child processes launched by privileged utilities.
+
+Correlate the command, effective identity, parent process and user session.
+
+## Triage workflow
 
 1. Preserve relevant logs and timestamps.
-2. Confirm which host, account and service are involved.
-3. Establish a timeline.
-4. Validate whether the behavior is expected.
-5. Determine affected assets and potential impact.
-6. Contain and remediate according to the organization's process.
-7. Record lessons learned.
+2. Identify the host, account, source and service.
+3. Build a timeline across web, network, authentication and system events.
+4. Determine whether the behavior was authorized.
+5. Assess impact and scope.
+6. Contain and remediate through the organization's process.
+7. Record the detection gap and lessons learned.
 
-Collect only the data needed. Packet captures and logs may contain credentials, personal data or confidential business information.
+## Evidence handling
+
+Logs and packet captures may contain credentials, personal data or confidential information. Collect only what is necessary and store it in an approved location.
