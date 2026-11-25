@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/motion/header-green.svg?v=2" width="100%" alt="Brooklyn Nine-Nine — Precinct 99 Cyber Operations with a rotating Earth globe" />
+<img src="assets/motion/header-green-animated.gif?v=3" width="100%" alt="Brooklyn Nine-Nine — Precinct 99 Cyber Operations with a geographically accurate rotating Earth globe" />
 
 <br />
 
@@ -131,7 +131,7 @@ This repository contains concise technical notes for the tools and concepts used
 
 </div>
 
-The globe uses synthetic demonstration data for visual effect only. It does not display real network traffic, live attacks, or threat-intelligence feeds.
+The banner Earth uses Natural Earth Admin 0 country-boundary geometry. The separate interactive site globe uses synthetic demonstration data; neither visual displays real network traffic, live attacks, or threat-intelligence feeds.
 
 ---
 
