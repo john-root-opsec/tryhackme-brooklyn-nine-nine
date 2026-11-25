@@ -1,56 +1,77 @@
-# Web & HTTP Fundamentals
+# Web & HTTP — Lab Fundamentals
 
-## Purpose
+## Why this topic appears in the lesson
 
-Web reconnaissance examines how a web application presents content and how its server responds to requests. The browser is an investigative tool, but every observation must be interpreted carefully.
-
-## URL anatomy
-
-A URL may contain a scheme (such as `http` or `https`), hostname, optional port, path, query string and fragment. The fragment is processed by the client and is not sent as part of the HTTP request target.
-
-## HTTP request and response
-
-An HTTP request includes a method, target, protocol version, headers and sometimes a body. A response contains a status code, headers and sometimes a body.
-
-Common methods:
-- `GET` — retrieve a representation;
-- `HEAD` — request response metadata without the usual response body;
-- `POST` — submit data for processing;
-- `PUT` and `DELETE` — request resource changes, subject to application semantics.
-
-Status-code groups:
-- `2xx` success;
-- `3xx` redirection;
-- `4xx` client-side request or authorization issue;
-- `5xx` server-side failure.
-
-A status code alone rarely explains full application behavior.
+The instructor begins the technical investigation through the browser. He inspects the page, checks its delivered HTML, retrieves a referenced image, reviews the file metadata and then uses directory discovery to map additional web resources.
 
 ## Browser inspection
 
-Developer tools help inspect the DOM, loaded scripts and images, network requests and response headers, cookies and storage, and console errors.
+Start by observing the page as a user would:
+- page title and visible content;
+- page layout and background resources;
+- links and referenced assets;
+- redirects and browser errors.
 
-"View Source" and the live DOM are not identical. The source is the document delivered by the server; the live DOM may be modified by JavaScript after loading.
+The browser's **View Source** displays the HTML document delivered by the server. The live DOM shown in Developer Tools may differ because client-side JavaScript can modify it after loading.
 
-## Static assets and metadata
+## HTTP requests and responses
 
-Images and documents may contain metadata such as timestamps, software identifiers, camera information or author fields. Metadata is not automatically secret, but it can disclose information an organization did not intend to publish.
+HTTP follows a request/response model. A browser or command-line client sends a request to a server and receives a status code, headers and—when applicable—a response body.
 
-Review only files within the authorized lab scope. Avoid uploading private or sensitive assets to third-party analysis services.
+Relevant status codes during content discovery:
 
-## Content discovery
+| Code | Meaning |
+|:--:|:--|
+| `200` | The requested resource was returned successfully. |
+| `301` / `302` | The resource redirects to another location. |
+| `403` | The server understood the request but refuses access. |
+| `404` | The requested resource was not found. |
+| `5xx` | The server encountered an error processing the request. |
 
-Content-discovery tools request candidate paths and classify responses. Results require validation: custom error pages may look successful, redirects affect status codes, and rate limits or access controls can distort results. A discovered path is not necessarily a vulnerability.
+A `403` response does not mean that the resource is absent. A `404` response may also be customized by the application, so discovery results need interpretation.
 
-## Security concepts
+## Static assets and file metadata
 
-Web exposure can include directory listings, backup files, debug artifacts, source maps, verbose error messages and unsafe access controls. A finding requires evidence of impact, not merely an unusual URL.
+A page may reference images or other static files that can be retrieved separately. The lesson uses `wget` to save an image locally and ExifTool to inspect its metadata.
 
-## Defensive perspective
+Metadata may contain:
+- file format and dimensions;
+- timestamps;
+- author or software fields;
+- device or editing information;
+- comments or other embedded descriptive fields.
 
-- Publish only required resources.
-- Prevent unnecessary directory listing.
-- Remove backups and development artifacts from production.
-- Set appropriate cache, cookie and security headers.
-- Monitor unusual request patterns and repeated path guessing.
-- Keep server software and dependencies maintained.
+Not every image contains useful metadata. An empty or ordinary metadata report is still a valid result; do not invent a finding when the tool reports none.
+
+## Directory and content discovery
+
+Gobuster's directory mode requests candidate paths from a wordlist. SecLists provides collections of candidate names commonly used for this type of authorized assessment.
+
+When interpreting results:
+- review the HTTP status code;
+- consider response size and redirects;
+- understand the configured negative status codes;
+- compare suspicious responses with the site's normal not-found behavior;
+- manually validate candidate resources in the authorized scope.
+
+A discovered path is not automatically a vulnerability. It becomes security-relevant when the resource exposes information or functionality that should not be available.
+
+## Tools in this stage
+
+- **Firefox / Developer Tools:** inspect the page, source and network requests.
+- **wget:** retrieve a referenced asset for local review.
+- **ExifTool:** inspect the asset's metadata.
+- **SecLists:** provide a candidate-path wordlist.
+- **Gobuster:** discover candidate directories and files.
+
+## Defensive relevance
+
+- Remove unnecessary files and development artifacts from web roots.
+- Avoid exposing directory listings and sensitive backup files.
+- Review images and documents before publication.
+- Keep access-control decisions on the server, not only in the client.
+- Monitor unusual requests for repeated path guessing.
+
+## Scope
+
+Use only the web service deployed for the authorized TryHackMe room. Do not publish discovered room-specific paths, file contents or answer-bearing information while the room is active.
