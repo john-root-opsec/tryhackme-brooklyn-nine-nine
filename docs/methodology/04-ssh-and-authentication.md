@@ -1,36 +1,51 @@
-# 04 — SSH & Authentication
+# 04 — SSH Authentication Review
 
 ## Objective
 
-Understand secure remote administration and the risks created by weak authentication controls.
+Follow the instructor's transition from a password-security clue to controlled wordlist-based authentication testing and SSH remote access.
 
-## SSH fundamentals
+## Wordlists and RockYou
 
-SSH establishes an encrypted channel for remote access and related functions. It supports host identification and user authentication. Password and public-key authentication have different security properties and operational requirements.
+A wordlist is a collection of password candidates. The instructor refers to RockYou to demonstrate how previously exposed and commonly reused passwords can be used in a controlled password audit.
 
-## Key concepts
+Important concepts:
+- wordlist source and provenance;
+- file format and character encoding;
+- size and resource requirements;
+- password reuse and predictable patterns;
+- safe handling of downloaded datasets.
 
-- Client and server roles
-- Host keys and server identity
-- Public/private key pairs
-- Password authentication
-- Authorized keys
-- SSH configuration and access restrictions
-- Session logs and authentication events
+Do not add a downloaded wordlist to this repository. It is unnecessary for documentation and may be large.
 
-## Password-testing concepts
+## Hydra
 
-Hydra is an authentication-testing tool. In a controlled lab, the learning objective is to understand how weak passwords and insufficient controls can expose accounts—not to test unrelated accounts or services.
+Hydra is used in the lesson to demonstrate password-based authentication testing against the authorized lab service.
 
-Wordlists such as RockYou illustrate the scale and predictability of commonly reused passwords. A wordlist is not evidence that an account is vulnerable.
+Understand the components of an authentication audit:
+- the explicitly authorized host and service;
+- the account scope;
+- the candidate-password source;
+- connection and attempt limits;
+- the service response used to evaluate an attempt;
+- the risk of account lockout or service degradation.
+
+This document intentionally omits target-specific Hydra arguments, usernames, successful credentials and output.
+
+## SSH
+
+SSH provides encrypted remote administration. The client should verify the server's host identity and then authenticate using a method permitted by the server.
+
+A successful login grants the permissions of the authenticated account. It is not equivalent to root access.
 
 ## Defensive controls
 
-- Prefer well-managed SSH keys or stronger authentication.
+- Prefer strong, unique passwords or managed public-key authentication.
 - Use multi-factor authentication where appropriate.
-- Restrict access by user, group and network.
-- Apply rate limiting and monitoring.
-- Disable unused accounts and authentication methods.
-- Alert on repeated failures and unusual login patterns.
+- Restrict SSH access to approved users and network sources.
+- Apply rate limits and monitor repeated failures.
+- Protect private keys and never commit credentials to Git.
+- Review successful logins as well as failed attempts.
 
-A successful authentication establishes access as a particular account. It does not establish root privileges or permission to access every resource.
+## Publication boundary
+
+Do not publish the room's user name, password, successful Hydra result, SSH command line or active-room walkthrough.
