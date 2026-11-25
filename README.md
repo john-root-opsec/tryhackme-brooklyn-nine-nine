@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/motion/header-green.svg" width="100%" alt="Brooklyn Nine-Nine — Precinct 99 Cyber Operations" />
+<img src="assets/motion/header-green.svg?v=2" width="100%" alt="Brooklyn Nine-Nine — Precinct 99 Cyber Operations with a rotating Earth globe" />
 
 <br />
 
