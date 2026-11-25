@@ -1,72 +1,73 @@
-# Networking & TCP/IP Fundamentals
+# Networking & TCP/IP — Lab Fundamentals
 
-## Purpose
+## Why this topic appears in the lesson
 
-Network reconnaissance is meaningful only when the operator understands how devices address one another and how transport protocols expose services.
+The instructor first verifies that the deployed host is reachable, then uses Nmap to identify exposed TCP services. Understanding ICMP, TCP and port states is required to interpret those results correctly.
 
-## IP addressing
+## ICMP reachability
 
-An IP address identifies a network interface within an IP network. IPv4 addresses contain 32 bits and are commonly written in dotted-decimal notation. CIDR notation (for example, `192.0.2.10/24`) describes the prefix length used to identify the network portion.
+`ping` sends ICMP Echo Requests and waits for Echo Replies. It is a basic connectivity check—not a port scan and not proof that an application is available.
 
-A host may have several interfaces and addresses. Do not confuse a local LAN address, a VPN tunnel address, a public Internet address and a remote lab target.
+Interpret:
+- replies received: the tested path supports the ICMP exchange;
+- packet loss: some probes did not receive replies;
+- no reply: the host may be down, filtering ICMP or unreachable along the current route.
 
-## Routing
+A host can block ICMP and still expose TCP services.
 
-A routing table determines where packets are sent. A VPN commonly creates a virtual interface and adds routes for the permitted training network. A successful VPN connection alone does not prove that every target is reachable; route selection, firewall policy and target state also matter.
+## TCP ports and services
+
+TCP provides a reliable, connection-oriented byte stream. A listening application binds to a local address and port. A remote scan tests whether a connection can be established or inferred at that destination.
+
+A port number is not definitive proof of the software running behind it. The conventional association of a port with FTP, SSH or HTTP is an initial service hint; version detection is a separate Nmap task.
+
+## TCP three-way handshake
+
+A normal TCP connection is established through:
+1. **SYN** — the client requests a connection.
+2. **SYN-ACK** — the server acknowledges and offers its sequence number.
+3. **ACK** — the client acknowledges the response.
+
+## SYN scanning
+
+The instructor demonstrates a SYN scan. Nmap sends a SYN probe and interprets the response without completing the full application connection in the same way as a TCP connect scan.
+
+A SYN scan needs packet privileges on Linux. If the scanner reports that elevated privileges are required, that is a permissions issue with the scan method—not evidence that the target is unreachable.
+
+## Port states
+
+| Nmap state | Meaning |
+|:--|:--|
+| `open` | A service appears to be accepting connections on the port. |
+| `closed` | The host is reachable, but no service is listening on the port. |
+| `filtered` | Filtering prevents Nmap from deciding whether the port is open. |
+| `open|filtered` | The scan cannot distinguish an open port from a filtered response. |
+
+The state describes what the scan could infer from one network position at one point in time.
+
+## Service/version detection
+
+Port discovery answers **which ports appear open**. Service/version detection attempts to identify **which application and version respond**. A banner or version result is useful evidence, but it does not by itself prove that a vulnerability exists.
+
+## Routing and VPN context
+
+When Kali connects to TryHackMe through OpenVPN, a virtual interface and routes are added. Verify local addressing and routing before testing a lab host:
 
 ```bash
 ip -br addr
 ip route
-ip route get 192.0.2.10
 ```
 
-The example address belongs to the documentation range and is not a real lab target.
+Use only the current target address shown by the TryHackMe room. Never copy the instructor's historical target address.
 
-## TCP and UDP
+## Defensive relevance
 
-**TCP** is connection-oriented. It uses sequence numbers, acknowledgements, retransmission and flow control to provide a reliable byte stream.
+- Restrict unnecessary inbound ports.
+- Expose administrative services only to trusted networks.
+- Monitor repeated connection attempts and broad port sweeps.
+- Maintain an accurate service inventory.
+- Do not treat an open port alone as a confirmed vulnerability.
 
-**UDP** is connectionless and provides datagrams without TCP's delivery and ordering guarantees. Applications may add their own reliability or transaction logic.
+## References
 
-A service is associated with a transport protocol and port number. A TCP port and a UDP port with the same numeric value are separate endpoints.
-
-## Ports and sockets
-
-A port is a 16-bit transport-layer identifier. A network connection is commonly described by protocol, source IP, source port, destination IP and destination port.
-
-A port scan reports what the scanner could infer at a particular time. It does not by itself establish that an application is vulnerable.
-
-## TCP connection establishment
-
-The normal TCP three-way handshake is:
-1. Client sends **SYN**.
-2. Server responds **SYN-ACK**.
-3. Client sends **ACK**.
-
-A SYN scan sends the initial SYN and interprets the response without completing the same full connection sequence as a normal TCP connect scan. Results can still be affected by firewalls, packet filtering, rate limits and network behavior.
-
-## Common Nmap port states
-
-| State | General meaning |
-|:--|:--|
-| `open` | An application is accepting connections or packets on that port. |
-| `closed` | The host responded, but no application is listening on that port. |
-| `filtered` | Filtering prevents Nmap from determining whether the port is open. |
-| `open|filtered` | Nmap cannot distinguish an open port from filtering. |
-| `closed|filtered` | Used by certain scan types when the state cannot be determined precisely. |
-
-Port states are observations from a specific vantage point and time, not permanent properties.
-
-## DNS and application protocols
-
-DNS translates names to records such as IP addresses. HTTP carries web requests and responses. FTP is a legacy file-transfer protocol. SSH provides encrypted remote login and related secure channels.
-
-## Security implications
-
-- Exposed services increase the externally reachable attack surface.
-- Unnecessary listeners should be disabled or restricted.
-- Network segmentation limits the impact of compromise.
-- Monitoring should capture relevant connection and authentication events.
-- Encryption protects data in transit but does not correct weak authorization.
-
-See [References](../references/README.md) for standards and official tool documentation.
+See [Nmap and protocol references](../references/README.md).
