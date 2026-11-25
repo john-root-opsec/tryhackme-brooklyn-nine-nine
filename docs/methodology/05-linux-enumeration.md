@@ -1,33 +1,42 @@
-# 05 — Linux Enumeration
+# 05 — Linux Enumeration After SSH
 
 ## Objective
 
-Understand the identity and security context of an authorized Linux session.
+After establishing an authorized SSH session, understand the permissions and filesystem context of the authenticated Linux account.
 
-## Areas to examine conceptually
+## Identity and session context
 
-- Current user and group membership
-- Hostname and operating-system information
-- Home directories and ownership
-- File and directory permissions
-- Running processes and services
-- Listening sockets
-- Environment variables and shell context
-- Scheduled tasks and service configuration
-- Sudo policy and privilege boundaries
+The first questions are:
+- which account is active;
+- which groups apply to that account;
+- which directory is the current working directory;
+- which home directories and files are visible;
+- what permissions are granted to the current user.
 
-## Important distinctions
+A remote shell operates with the authenticated account's identity unless a separate privileged execution mechanism is used.
 
-- A user identity is not the same as a process identity.
-- File read permission differs from directory traversal permission.
-- A running service may have a separate, restricted service account.
-- Root is the superuser identity, but applications may also receive specific Linux capabilities.
-- Visible configuration is not automatically exploitable.
+## Home directories and files
 
-## Evidence discipline
+The instructor reviews the Linux home-directory structure and moves through user directories. The learning objectives are:
+- understand how user home directories are organized;
+- distinguish ownership from access permissions;
+- identify which files are readable by the current account;
+- avoid assuming that a visible file is automatically sensitive or exploitable.
 
-Record what was observed, the context in which it was observed and any limitations. Avoid storing private host details, credentials or room-specific evidence in public-facing documentation.
+Room-specific directory names, file names and file contents must remain in private notes while the room is active.
 
-## Defensive perspective
+## Permission review
 
-Use dedicated service accounts, restrict file permissions, minimize installed software, review sudo policy and monitor unexpected process or service changes.
+Interpret the owner, group and other permission bits. Remember that directory traversal requires execute permission on the directory, and access to a file depends on both the file and its parent directories.
+
+## Root versus a regular user
+
+A regular account has only the access granted by its identity, groups and explicit privilege rules. Root is the superuser account. A user may have access to selected privileged commands without having unrestricted root access.
+
+## Defensive relevance
+
+- Protect user home directories and sensitive files.
+- Remove stale accounts and unused access.
+- Review group membership and file ownership.
+- Monitor unusual access to other users' directories.
+- Apply least privilege to interactive and service accounts.
