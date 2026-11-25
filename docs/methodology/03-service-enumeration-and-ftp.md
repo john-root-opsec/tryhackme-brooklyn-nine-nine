@@ -1,38 +1,43 @@
-# 03 — Service Enumeration & FTP
+# 03 — FTP Service Review
 
 ## Objective
 
-Move from knowing that a port is reachable to understanding which service may be listening, how it behaves and which security controls matter.
+After identifying the file-transfer service, follow the instructor's review of FTP authentication, directory access and file handling.
 
-## Service enumeration
+## FTP service context
 
-Enumeration gathers details such as protocol behavior, product/version hints, authentication methods, accessible resources and configuration/permission boundaries.
+FTP uses a control connection for commands and a separate data connection for directory listings and file transfers. Traditional FTP does not encrypt credentials or data by default.
 
-A banner or version string can be inaccurate, altered or insufficient to identify patch status. Corroborate evidence before making claims.
+Service identification can provide product and version information, but a version string alone is not proof of a vulnerability.
 
-## FTP fundamentals
+## Access review
 
-FTP is a legacy file-transfer protocol. Traditional FTP uses separate control and data connections and does not encrypt credentials or content by default.
-
-Important concepts:
-- control connection and data connection;
-- active and passive modes;
+The instructor checks the authentication behavior exposed by the FTP service. Understand the distinction between:
+- named-user authentication;
 - anonymous access;
-- read, write, upload and delete permissions;
-- cleartext exposure;
-- FTPS versus SFTP.
+- successful authentication;
+- permission to list a directory;
+- permission to download, upload, modify or delete a file.
 
-## Security questions
+These permissions are separate. Being able to log in does not automatically grant write access.
 
-- Is anonymous access intentionally enabled?
-- Which directories are exposed?
-- Are users allowed to upload or modify files?
-- Can files be read by identities that do not need them?
-- Are credentials or sensitive data transmitted without encryption?
-- Is the service necessary and appropriately restricted?
+## Directory and file review
 
-## Defensive perspective
+When access is permitted in the lab, directory listing and file retrieval help determine what information is exposed. Treat any retrieved content as sensitive lab evidence.
 
-Prefer secure transfer mechanisms, disable unnecessary anonymous access, enforce least privilege, isolate transfer directories, monitor file operations and remove sensitive data from exposed locations.
+For the public repository, document only the general lesson:
+- what anonymous access means;
+- why file exposure matters;
+- how permissions constrain operations;
+- why cleartext protocols create confidentiality risks.
 
-This page explains FTP concepts and review questions. Do not add room-specific file names, messages, credentials, flags or exploitation chains while the room is active.
+Do not publish room-specific file names, messages, credentials, flags or contents while the room is active.
+
+## Defensive relevance
+
+- Disable anonymous access unless there is a documented requirement.
+- Prefer SFTP or FTPS over unencrypted FTP.
+- Restrict read/write permissions to the minimum necessary.
+- Isolate transfer directories from application and system files.
+- Monitor authentication and file-transfer events.
+- Remove sensitive or obsolete files from exposed directories.
