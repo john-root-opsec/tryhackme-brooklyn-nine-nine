@@ -1,95 +1,65 @@
 # Learning Plan — Brooklyn Nine-Nine
 
-This plan follows the sequence demonstrated in the instructor's video and expands it into broader cybersecurity study. The video provides the practical order; the fundamentals and defensive tracks extend learning beyond this room.
+This plan follows the order demonstrated in the instructor's video. The objective is to reproduce the learning process in the local Kali environment while understanding the protocols, tools and Linux security concepts behind each step.
 
-## Learning cycle
+## Instructor sequence
 
-1. **Context** — identify the question and authorized scope.
-2. **Concepts** — understand the protocol, operating-system feature or security principle.
-3. **Practice** — perform only the step permitted in the TryHackMe lab.
-4. **Interpretation** — distinguish facts, assumptions and unknowns.
-5. **Defensive view** — consider logging, detection, impact and mitigation.
-6. **Documentation** — record general knowledge without restricted room answers.
-
-## Instructor-aligned sequence
-
-| Order | Stage | Main topics | Status |
+| Order | Stage | Topics and tools | Progress |
 |:--:|:--|:--|:--|
-| 00 | Environment preparation | Kali Linux, OpenVPN, routes, scope and connectivity | Practised |
-| 01 | Web reconnaissance | HTTP, browser inspection, source review, metadata and content discovery | Next |
-| 02 | Network scanning | TCP, SYN scan, port states and Nmap interpretation | Initial scan practised |
-| 03 | Service / FTP review | Service identification, FTP behavior and file permissions | Pending |
-| 04 | SSH / authentication | SSH, password security, wordlists and authentication controls | Pending |
-| 05 | Linux enumeration | Identity, filesystem, users, groups, processes and permissions | Pending |
-| 06 | Privilege escalation concepts | Sudo policy, binary behavior and privilege boundaries | Pending |
-| 07 | Defensive review | Detection, hardening, remediation and reporting | Pending |
+| 00 | Environment setup | TryHackMe lab, Kali Linux, OpenVPN, ICMP reachability | Completed |
+| 01 | Web reconnaissance | Browser inspection, HTML source, `wget`, ExifTool, SecLists and Gobuster | Next |
+| 02 | Network scanning | Nmap SYN scan, TCP port states and service/version detection | Preliminary port check performed; revisit in sequence |
+| 03 | FTP investigation | FTP service review, authentication mode, directory listing and file handling | Pending |
+| 04 | SSH authentication | RockYou wordlist, Hydra and SSH concepts | Pending |
+| 05 | Linux enumeration | Authenticated user context, home directories, files and permissions | Pending |
+| 06 | Privilege escalation | `sudo -l`, permitted binary review and GTFOBins | Pending |
 
-"Practised" records the general learning activity. It does not mean the room is complete or that a specific vulnerability has been confirmed.
+The progress labels describe our study workflow only. They do not claim that the room is complete or disclose any room-specific result.
 
-## Broader learning tracks
+## Stage objectives
 
-### Networking
-- IPv4 addressing and CIDR
-- TCP versus UDP
-- Ports, sockets and routing
-- DNS, HTTP, FTP and SSH
-- Packet inspection and network segmentation
+### 00 — Prepare the lab
 
-### Web security
-- URLs, HTTP methods, headers and status codes
-- Browser developer tools and source inspection
-- Static assets and metadata
-- Content discovery and web exposure
-- Authentication and session fundamentals
+Confirm the currently deployed machine, establish the approved VPN connection from Kali, inspect the route and verify basic reachability. Keep the VPN profile outside the repository.
 
-### Linux and identity
-- Shell navigation and command pipelines
-- Users, groups and file permissions
-- Processes, services and environment variables
-- Sudo policy and least privilege
-- SSH keys and secure remote administration
+### 01 — Inspect the web service
 
-### Offensive security methodology
-- Scoping and authorization
-- Reconnaissance and enumeration
-- Evidence validation
-- Risk reasoning
-- Reproducible technical reporting
+Use the browser to examine the page and its source. Identify referenced static resources, retrieve the relevant image for local inspection, review its metadata with ExifTool, then understand directory/content discovery with Gobuster and a SecLists wordlist.
 
-### Defensive security
-- Authentication and service logs
-- Network monitoring
-- Detection opportunities
-- Secure configuration
-- Remediation and verification
+### 02 — Scan the network
 
-## Evidence quality rules
+Understand why a SYN scan requires suitable privileges, how Nmap reports TCP port states and why service/version detection is a separate step from basic port discovery.
 
-Label statements as:
-- **Observed:** directly visible in output or behavior.
-- **Interpreted:** a reasoned explanation supported by an observation.
-- **Hypothesis:** a possibility requiring validation.
-- **Unknown:** information not established by available evidence.
+### 03 — Review FTP
 
-Never turn a hypothesis into a finding without validation.
+Understand the FTP service, authentication modes, directory listing and file permissions. Treat any retrieved file as evidence that must be reviewed carefully; do not publish room-specific contents.
 
-## Current progress
+### 04 — Study SSH authentication
 
-- [x] Local Kali environment prepared
-- [x] OpenVPN connection established
-- [x] Lab reachability checked
-- [x] Initial TCP port-discovery exercise performed
-- [ ] Web reconnaissance study
-- [ ] Service enumeration study
-- [ ] FTP security concepts
-- [ ] SSH and authentication concepts
-- [ ] Linux enumeration concepts
-- [ ] Privilege-boundary concepts
-- [ ] Defensive analysis and remediation
+Understand the role of a password wordlist such as RockYou and the purpose and limitations of Hydra in an explicitly authorized authentication audit. Study SSH session establishment and credential hygiene.
 
-## Rules
+### 05 — Enumerate the Linux context
 
-- Test only the machine and services deployed for the authorized room.
-- Do not publish VPN profiles, credentials, flags, target-specific exploitation steps or active-room walkthroughs.
-- Do not commit raw packet captures or sensitive operational notes.
-- Keep examples in the knowledge base generic and reusable.
+After an authorized SSH session, identify the current account and inspect the relevant user and filesystem context. Understand ownership, permissions and the difference between a normal account and root.
+
+### 06 — Review privilege boundaries
+
+Understand how sudo policy is inspected, why a narrowly scoped command can still be dangerous if it permits an unintended function, and how GTFOBins is used as a reference. Do not publish the room's exact privileged binary behavior or exploitation sequence while the room is active.
+
+## Learning record
+
+For every stage, answer:
+- What question is this step intended to answer?
+- Which tool or interface is being used?
+- Which protocol or operating-system feature is involved?
+- What does the output establish?
+- What remains unknown?
+- What defensive control would reduce the associated risk?
+
+## Scope and evidence rules
+
+- Use only the TryHackMe machine deployed for this room.
+- Use the current target address shown by the platform; do not copy an address from the instructor's video.
+- Do not commit VPN profiles, credentials, private keys, flags or raw evidence.
+- Keep active-room answers and target-specific exploitation details in private notes.
+- Mark observations, interpretations and hypotheses separately.
