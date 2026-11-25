@@ -1,37 +1,52 @@
-# 06 — Privilege Escalation Concepts
+# 06 — Privilege Escalation Review
 
 ## Objective
 
-Understand how a user with limited permissions might reach a more privileged security context when the system is misconfigured.
+Follow the instructor's final technical stage: inspect sudo permissions, research the security implications of the permitted Unix binary and understand how an overly broad privilege rule can cross a user/root boundary.
 
-## Core concepts
+## Review sudo policy
 
-- Linux user and group identities
-- sudoers policy
-- Set-user-ID (SUID) and Set-group-ID (SGID) behavior
-- Linux capabilities
-- Writable paths and unsafe file ownership
-- Scheduled tasks and service permissions
-- Environment and path-handling risks
-- Legitimate binary behavior and GTFOBins as a security reference
+The instructor uses sudo policy inspection to determine which commands the authenticated account is allowed to execute with elevated privileges.
 
-## The role of GTFOBins
+The important fields are:
+- the user and host context;
+- the permitted command;
+- the target execution identity;
+- whether a password is required;
+- argument restrictions or lack of restrictions.
 
-GTFOBins documents ways standard Unix binaries may be abused when they are available with unsafe permissions or execution context. The existence of a binary on a system is not, by itself, evidence of a vulnerability.
+A command being listed in sudo policy does not automatically mean unrestricted root access. The behavior of that program and the permitted arguments matter.
 
-The security question is whether the user's permitted execution context allows an unintended action that crosses a privilege boundary.
+## Research the permitted binary
 
-## About less
+The instructor consults GTFOBins to understand how a legitimate Unix utility may behave when it is granted elevated execution rights.
 
-`less` is a terminal pager used to view text. Like other powerful utilities, its behavior can be security-relevant if an administrator grants an overly broad privilege rule. Review the permission context and policy rather than assuming every use of the program is dangerous.
+GTFOBins is a reference for reviewing:
+- whether a program can launch another command;
+- whether it can open a shell or invoke a system function;
+- whether the behavior depends on the execution context;
+- what administrator configuration makes the behavior dangerous.
 
-## Defensive perspective
+The exact room-specific binary behavior and exploitation sequence are intentionally omitted while the room is active.
 
-- Avoid unrestricted sudo rules.
-- Restrict permitted commands and arguments.
-- Remove unnecessary SUID/SGID permissions.
-- Audit Linux capabilities.
-- Ensure privileged scripts and parent directories are not writable by untrusted users.
-- Keep software updated and review service accounts.
+## Verify privilege context
 
-This page covers security principles. Do not publish room-specific command sequences, flags, credentials or walkthroughs while the room is active.
+Security testing should distinguish between:
+- the original authenticated account;
+- a process running with elevated privileges;
+- a shell operating as root.
+
+Verification should establish the effective identity rather than relying on the fact that a command was accepted.
+
+## Defensive relevance
+
+- Keep sudo rules narrow and task-specific.
+- Avoid granting unrestricted access to general-purpose utilities.
+- Restrict command arguments where possible.
+- Review rules that do not require a password.
+- Audit privileged binaries and service accounts.
+- Remove excessive permissions and validate the correction.
+
+## Publication boundary
+
+Do not publish the room's exact sudo rule, privileged binary, shell-escape sequence, root proof output or flags while the room is active.
