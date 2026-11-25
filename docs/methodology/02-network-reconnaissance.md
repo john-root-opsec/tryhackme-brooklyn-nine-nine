@@ -2,42 +2,50 @@
 
 ## Objective
 
-Identify which network services are reachable in the authorized scope and understand the limits of a port-scan result.
+Follow the instructor's network-scanning stage: use Nmap to identify reachable TCP ports, then perform service/version identification to understand what is listening.
 
-## Before scanning
+## 1. Understand the scan type
 
-- Confirm the target address from the currently deployed lab page.
-- Confirm the scan is permitted by the room and platform rules.
-- Identify the intended protocol and scope.
-- Understand the selected scan type and timing.
-- Save output responsibly; do not commit target-specific output while room restrictions apply.
+The instructor demonstrates a TCP SYN scan. Before running it, understand:
+- why packet-level scan methods need appropriate privileges on Linux;
+- how a SYN probe is interpreted;
+- how a firewall or packet filter can affect the response;
+- why scan output is a point-in-time observation.
 
-## Concepts
+If Nmap reports that elevated privileges are required, the scan did not complete with the requested method. Correct the local permission issue before interpreting target results.
 
-- TCP and UDP port spaces
-- TCP three-way handshake
-- SYN scanning versus full TCP connect scanning
-- Port states: open, closed and filtered
-- Firewalls, packet filtering and network paths
-- Common-port scans versus full-range scans
-- Service identification versus service-version detection
+## 2. Read port states
 
-## Nmap interpretation
+| State | Interpretation |
+|:--|:--|
+| `open` | A service appears to accept connections on the port. |
+| `closed` | The host responds, but no service is listening on that port. |
+| `filtered` | Filtering prevents Nmap from determining the state. |
 
-Nmap can perform host discovery, port scanning, service/version detection and script-assisted checks. These functions are distinct. A basic port scan does not establish software version, and a version guess is not proof of vulnerability.
+Do not treat a port number as proof of a specific product. Nmap's service label may initially be based on the conventional port mapping.
 
-When reading output, distinguish host availability, protocol and port, reported state, service-name guess, version evidence and scan limitations.
+## 3. Identify services and versions
 
-## Common mistakes
+Service/version detection is a separate step from basic port discovery. It sends probes and compares responses to identify the application and possible version.
 
-- Treating a port number as proof of the exact application.
-- Assuming a host is offline when ICMP is blocked.
-- Treating `filtered` as `closed`.
-- Claiming vulnerability based only on a service banner.
-- Scanning outside the authorized range.
+A version string:
+- can help select the next investigation step;
+- may be hidden, modified or incomplete;
+- does not prove that the software is vulnerable;
+- must be interpreted with patch status and configuration in mind.
 
-## Defensive perspective
+## 4. Keep the scope precise
 
-Reduce exposed listeners, filter unnecessary access, segment networks, maintain an asset inventory and monitor unexpected connection attempts.
+- Scan only the current target address shown by the active TryHackMe room.
+- Do not use the historical target address from the instructor's video.
+- Do not expand the scan to unrelated hosts or networks.
+- Keep raw target output in private notes while the room's sharing restrictions apply.
 
-See [Networking & TCP/IP](../fundamentals/networking-and-tcp-ip.md) and [official references](../references/README.md).
+## Defensive relevance
+
+Port exposure should match an explicit business requirement. Defenders can reduce risk by disabling unused listeners, restricting administrative services, segmenting networks and monitoring unusual connection patterns.
+
+## Related study
+
+- [Networking & TCP/IP](../fundamentals/networking-and-tcp-ip.md)
+- [Official Nmap documentation](../references/README.md)
