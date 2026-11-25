@@ -30,18 +30,95 @@
   <text x="58" y="225" fill="url(#green)" font-family="Arial,sans-serif" font-size="78" font-weight="900" letter-spacing="-3" filter="url(#neon)">NINE-NINE</text>
   <text x="63" y="258" fill="#b6c9bc" font-size="11" letter-spacing="2">TRYHACKME LAB / LINUX PENETRATION TESTING / CASE 001</text>
 </g>
-<g transform="translate(927 151)" fill="none">
-  <circle r="115" stroke="#39ff88" stroke-opacity=".22" stroke-width="1"/>
-  <circle r="95" stroke="#39ff88" stroke-opacity=".62" stroke-width="1.5"/>
-  <ellipse rx="95" ry="39" stroke="#39ff88" stroke-opacity=".42"/>
-  <ellipse rx="95" ry="68" stroke="#39ff88" stroke-opacity=".35"/>
-  <ellipse rx="40" ry="95" stroke="#39ff88" stroke-opacity=".45"/>
-  <ellipse rx="70" ry="95" stroke="#39ff88" stroke-opacity=".22"/>
-  <path d="M-95 0H95M0-95V95" stroke="#39ff88" stroke-opacity=".32" stroke-dasharray="4 7"/>
-  <path d="M-66-65L-12-20L29-36L73 15L32 61" stroke="#39ff88" stroke-width="1.7" stroke-opacity=".8" filter="url(#neon)"/>
-  <path d="M-66-65L-12-20L29-36L73 15L32 61" stroke="#d5ffe3" stroke-width="1" stroke-dasharray="2 8"/>
-  <g fill="#39ff88" filter="url(#neon)"><circle cx="-66" cy="-65" r="4"/><circle cx="-12" cy="-20" r="4"/><circle cx="29" cy="-36" r="4"/><circle cx="73" cy="15" r="4"/><circle cx="32" cy="61" r="4"/></g>
-  <circle r="126" stroke="#f5d90a" stroke-opacity=".55" stroke-dasharray="2 12"/>
+<g transform="translate(927 151)">
+  <defs>
+    <clipPath id="earthClip"><circle r="94"/></clipPath>
+    <pattern id="landDots" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="4" fill="#0a4828"/>
+      <circle cx="1" cy="1" r=".55" fill="#62ffa4" fill-opacity=".48"/>
+    </pattern>
+    <radialGradient id="earthShade">
+      <stop offset="0" stop-color="#001108" stop-opacity=".02"/>
+      <stop offset=".72" stop-color="#001108" stop-opacity=".10"/>
+      <stop offset="1" stop-color="#000805" stop-opacity=".78"/>
+    </radialGradient>
+    <radialGradient id="earthAtmosphere">
+      <stop offset=".72" stop-color="#39ff88" stop-opacity="0"/>
+      <stop offset="1" stop-color="#39ff88" stop-opacity=".22"/>
+    </radialGradient>
+    <filter id="earthGlow">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <circle r="126" fill="none" stroke="#f5d90a" stroke-opacity=".42" stroke-dasharray="2 12"/>
+  <circle r="115" fill="url(#earthAtmosphere)" stroke="#39ff88" stroke-opacity=".25"/>
+  <circle r="95" fill="#06130c" stroke="#39ff88" stroke-opacity=".72" stroke-width="1.5"/>
+
+  <g clip-path="url(#earthClip)">
+    <rect x="-95" y="-95" width="190" height="190" fill="#071a10"/>
+
+    <g>
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="-190 0"
+        dur="18s" calcMode="linear" repeatCount="indefinite"/>
+
+      <g id="earthMapA" fill="url(#landDots)" stroke="#43ff91" stroke-width=".8"
+         stroke-opacity=".9" stroke-linejoin="round">
+        <path d="M-84,-57 L-78,-68 -65,-72 -58,-65 -49,-64 -44,-55 -48,-47 -43,-40 -48,-31 -55,-25 -58,-13 -67,-12 -70,-21 -77,-27 -82,-39 Z"/>
+        <path d="M-52,-79 L-41,-85 -32,-75 -37,-62 -47,-61 Z"/>
+        <path d="M-48,-19 L-43,-12 -39,-7 -41,1 -36,6 -39,13 -44,6 -47,-3 Z"/>
+        <path d="M-43,8 L-32,6 -24,14 -26,27 -25,39 -30,54 -34,73 -40,59 -42,42 -47,26 -49,14 Z"/>
+        <path d="M-16,-49 L-8,-58 4,-55 13,-48 8,-40 -2,-39 -8,-32 -17,-37 Z"/>
+        <path d="M-10,-31 L7,-36 18,-24 17,-8 12,7 8,23 1,42 -7,32 -14,13 -18,-4 Z"/>
+        <path d="M7,-56 L25,-63 43,-57 57,-63 75,-51 85,-39 79,-29 67,-27 59,-18 47,-21 39,-13 27,-19 18,-14 11,-22 0,-27 1,-39 Z"/>
+        <path d="M23,-13 L34,-9 32,5 27,3 22,-5 Z"/>
+        <path d="M49,-12 L58,-6 64,4 58,9 53,2 Z"/>
+        <path d="M70,-21 L77,-11 74,-4 69,-14 Z"/>
+        <path d="M53,29 L69,25 83,33 80,45 68,55 56,49 50,38 Z"/>
+        <path d="M18,9 L22,13 20,19 17,15 Z"/>
+      </g>
+
+      <g transform="translate(190 0)" fill="url(#landDots)" stroke="#43ff91"
+         stroke-width=".8" stroke-opacity=".9" stroke-linejoin="round">
+        <path d="M-84,-57 L-78,-68 -65,-72 -58,-65 -49,-64 -44,-55 -48,-47 -43,-40 -48,-31 -55,-25 -58,-13 -67,-12 -70,-21 -77,-27 -82,-39 Z"/>
+        <path d="M-52,-79 L-41,-85 -32,-75 -37,-62 -47,-61 Z"/>
+        <path d="M-48,-19 L-43,-12 -39,-7 -41,1 -36,6 -39,13 -44,6 -47,-3 Z"/>
+        <path d="M-43,8 L-32,6 -24,14 -26,27 -25,39 -30,54 -34,73 -40,59 -42,42 -47,26 -49,14 Z"/>
+        <path d="M-16,-49 L-8,-58 4,-55 13,-48 8,-40 -2,-39 -8,-32 -17,-37 Z"/>
+        <path d="M-10,-31 L7,-36 18,-24 17,-8 12,7 8,23 1,42 -7,32 -14,13 -18,-4 Z"/>
+        <path d="M7,-56 L25,-63 43,-57 57,-63 75,-51 85,-39 79,-29 67,-27 59,-18 47,-21 39,-13 27,-19 18,-14 11,-22 0,-27 1,-39 Z"/>
+        <path d="M23,-13 L34,-9 32,5 27,3 22,-5 Z"/>
+        <path d="M49,-12 L58,-6 64,4 58,9 53,2 Z"/>
+        <path d="M70,-21 L77,-11 74,-4 69,-14 Z"/>
+        <path d="M53,29 L69,25 83,33 80,45 68,55 56,49 50,38 Z"/>
+        <path d="M18,9 L22,13 20,19 17,15 Z"/>
+      </g>
+    </g>
+
+    <circle r="94" fill="url(#earthShade)"/>
+
+    <g fill="none" stroke="#39ff88" stroke-width="1">
+      <ellipse rx="94" ry="29" stroke-opacity=".30"/>
+      <ellipse rx="94" ry="61" stroke-opacity=".22"/>
+      <ellipse rx="34" ry="94" stroke-opacity=".32"/>
+      <ellipse rx="67" ry="94" stroke-opacity=".20"/>
+      <path d="M-94 0H94 M0-94V94" stroke-opacity=".26" stroke-dasharray="3 6"/>
+    </g>
+
+    <g fill="none" stroke="#54ffa0" stroke-width="1.2" stroke-opacity=".64" filter="url(#earthGlow)">
+      <path d="M-65,-48 Q-16,-76 23,-38 T69,18"/>
+      <path d="M-50,32 Q-5,4 24,29 T62,56" stroke-opacity=".35"/>
+    </g>
+    <g fill="#baffd3" filter="url(#earthGlow)">
+      <circle cx="-48" cy="-42" r="2.3"/>
+      <circle cx="16" cy="-22" r="2"/>
+      <circle cx="65" cy="17" r="2.2"/>
+    </g>
+  </g>
+
+  <circle r="95" fill="none" stroke="#b7ffd3" stroke-opacity=".38" stroke-width=".9"/>
+  <circle r="115" fill="none" stroke="#39ff88" stroke-opacity=".28"/>
 </g>
 <g font-family="monospace" font-size="9" letter-spacing="1.5" fill="#9bb1a2">
   <text x="1080" y="278" text-anchor="end">AUTHORIZED LAB // SYNTHETIC VISUALS</text>
