@@ -2,39 +2,42 @@
 
 ## Objective
 
-Prepare a local Kali Linux workstation to reach only the target environment explicitly deployed by TryHackMe.
+Prepare the local Kali Linux workstation and connect it to the TryHackMe room through the approved access path.
 
-## Preparation checklist
+## Instructor workflow
 
-- Confirm the room is active and identify the currently deployed target in the platform.
-- Use the platform-provided VPN profile and an approved region.
-- Keep the VPN profile outside Git and never share it.
-- Confirm the AttackBox is stopped when using the local VPN connection, if platform connection rules require a single active connection.
-- Start the lab machine and wait for initialization.
-- Verify the VPN interface and route table.
-- Confirm target reachability before beginning any scan.
+1. Open the Brooklyn Nine-Nine room.
+2. Start the lab machine and wait until the platform reports that it is running.
+3. Note the current target address displayed by TryHackMe.
+4. Use the AttackBox or connect the local Kali workstation through the TryHackMe OpenVPN configuration.
+5. When using local Kali, keep the VPN profile in a private local directory and do not add it to Git.
+6. Confirm the VPN interface and route.
+7. Perform a basic reachability check before starting service discovery.
 
-## Local verification
+## Local checks
 
 ```bash
 ip -br addr
 ip route
-ip route get 192.0.2.10
 ```
 
-The documentation-range address above is a placeholder, not a target.
+The interface and route output should show that the VPN is active and that the training network is routed through the expected tunnel.
 
-## Connectivity checks
+## ICMP reachability
 
-A limited ICMP check may help determine whether a host responds. Lack of an ICMP response does not prove that a host is down; firewalls may block it. A response proves reachability for that test path, not that an application is vulnerable.
+A ping test can confirm that the target responds to ICMP from the current network path. It is not a port scan, and a lack of response does not necessarily mean the target is offline.
 
-## Recordkeeping
+## Operational notes
 
-Describe the process generically. Keep VPN profiles, live target addresses and private lab evidence out of the repository while the room is active.
+- Use the current target address from the active room session.
+- Do not reuse the address shown in the instructor's recording.
+- Keep the OpenVPN terminal running while the VPN is required.
+- Stop the AttackBox if the platform's connection rules require a single active VPN connection.
+- Never commit the `.ovpn` file, passwords or other authentication material.
 
 ## Completion criteria
 
-- VPN interface is present and active.
-- Route selection points to the intended training network.
-- The currently deployed lab host is reachable by an approved test.
-- No VPN profile or credential has entered version control.
+- Lab machine is running.
+- Local Kali has an active approved connection.
+- VPN interface and routing are present.
+- Basic target reachability has been checked.
