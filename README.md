@@ -25,9 +25,9 @@
 
 ## CASE FILE / 001
 
-**Brooklyn Nine-Nine** is a practical cybersecurity learning project based on the TryHackMe training room. The repository combines the lab's learning notes with a custom cyber-operations frontend built with HTML, CSS, JavaScript and Three.js.
+**Brooklyn Nine-Nine** is a guided Linux penetration-testing lab documented in the same order demonstrated by the instructor. The practical workflow covers web reconnaissance, image metadata review, directory discovery, Nmap scanning, FTP investigation, password auditing, SSH access, Linux enumeration and privilege-boundary analysis.
 
-The goal is to develop a repeatable penetration-testing mindset: understand the environment, identify the attack surface, investigate exposed services, validate evidence, and explain the security implications.
+This repository contains concise technical notes for the tools and concepts used in that workflow, together with the project's separate cyber-operations frontend built with HTML, CSS, JavaScript and Three.js. The emphasis is on understanding each step—not collecting answers.
 
 > **Current status:** the lab is in progress. This repository does not publish room answers, flags, credentials, target-specific exploitation steps, or a walkthrough while the room's sharing restrictions apply.
 
@@ -41,20 +41,24 @@ The goal is to develop a repeatable penetration-testing mindset: understand the 
 
 ### TOOLKIT / WHAT EACH TOOL IS FOR
 
-| Tool | Role in the lab |
+| Tool | Role in the instructor's workflow |
 |:--|:--|
-| **Terminal / Bash** | Run commands, inspect output, manage files and keep a reproducible workflow. |
-| **Kali Linux** | Local security-testing workstation. |
-| **OpenVPN** | Connect the local Kali machine to the authorized TryHackMe network. |
-| **Nmap** | Discover reachable hosts, open ports and—when needed—service details. |
-| **Gobuster** | Discover web paths and resources during authorized HTTP enumeration. |
-| **ExifTool** | Inspect metadata in supported files and media. |
-| **FTP client** | Interact with the FTP service and understand access permissions. |
-| **Hydra** | Study authentication-testing risks in the authorized lab context. |
-| **SSH** | Establish secure remote sessions when valid lab access is available. |
-| **GTFOBins / less** | Reference Linux binaries and understand why unsafe privilege rules matter. |
+| **Kali Terminal / Bash** | Run commands, inspect output and manage downloaded files. |
+| **OpenVPN** | Connect the local Kali workstation to the authorized TryHackMe network. |
+| **Firefox / Developer Tools** | Inspect the HTTP page, delivered source and browser requests. |
+| **ping** | Check basic reachability of the deployed lab host. |
+| **wget** | Retrieve a web image for local metadata inspection. |
+| **ExifTool** | Review metadata embedded in the downloaded image. |
+| **SecLists** | Provide candidate paths for web content discovery. |
+| **Gobuster** | Enumerate candidate directories and files over HTTP. |
+| **Nmap** | Perform TCP SYN scanning and service/version identification. |
+| **FTP client** | Review FTP authentication, directory access and file-transfer behavior. |
+| **RockYou** | Supply a known wordlist for the controlled password-auditing stage. |
+| **Hydra** | Demonstrate password-based authentication testing in the authorized lab. |
+| **SSH** | Access the Linux service using authorized lab credentials. |
+| **sudo / GTFOBins** | Review delegated privileges and the security implications of permitted Unix binaries. |
 
-<sub>These entries describe the planned study toolkit and its general purpose; they are not claims that every tool has already been used or that any finding has been confirmed.</sub>
+<sub>This list follows the tools and interfaces shown in the lesson. It does not publish target-specific results, credentials, flags or exploitation commands.</sub>
 
 ### PROTOCOLS & SYSTEM CONCEPTS
 
@@ -77,18 +81,18 @@ The goal is to develop a repeatable penetration-testing mindset: understand the 
 
 ### HOW THE LAB WILL BE STUDIED
 
-| Phase | Focus | What we want to understand |
+| Phase | Instructor step | Technical focus |
 |:--:|:--|:--|
-| **00** | Environment setup | VPN connectivity, target scope and local tooling. |
-| **01** | Web reconnaissance | HTTP, browser inspection, source review and content discovery. |
-| **02** | Network scanning | TCP, SYN scanning, port states and Nmap interpretation. |
-| **03** | Service / FTP review | Service identification, FTP behavior and file permissions. |
-| **04** | SSH / authentication | Remote access, password security and authentication controls. |
-| **05** | Linux enumeration | Users, groups, processes, directories and permissions. |
-| **06** | Privilege escalation | Sudo policy, binary behavior and privilege boundaries. |
-| **07** | Defensive review | Detection, hardening, remediation and reporting. |
+| **00** | Environment setup | Start the lab, connect through VPN and verify host reachability. |
+| **01** | Web reconnaissance | Inspect the page and HTML source; retrieve the image and review its metadata. |
+| **02** | Directory discovery | Use SecLists and Gobuster to identify candidate web resources. |
+| **03** | Network scanning | Use Nmap for TCP SYN scanning and service/version identification. |
+| **04** | FTP investigation | Review FTP access behavior, directory listing and file-transfer permissions. |
+| **05** | SSH authentication | Study RockYou, Hydra and remote SSH authentication. |
+| **06** | Linux enumeration | Inspect the authenticated account, home directories and permission context. |
+| **07** | Privilege review | Examine sudo policy and use GTFOBins to understand the permitted binary's risk. |
 
-**Method:** learn the concept → perform the authorized lab exercise → interpret the output → document the defensive lesson.
+**Method:** follow the instructor's order → understand the protocol or operating-system feature → interpret the observed behavior → connect it to the relevant security control.
 
 ---
 
@@ -106,10 +110,10 @@ The goal is to develop a repeatable penetration-testing mindset: understand the 
 
 | Track | What it contains |
 |:--|:--|
-| [Fundamentals](docs/README.md#01--fundamentals) | Networking, TCP/IP, HTTP, Linux, permissions and authentication. |
-| [Lab Methodology](docs/README.md#02--lab-methodology) | Instructor-aligned sequence: environment, web, network, FTP, SSH, Linux and privilege concepts. |
-| [Defensive Security](docs/README.md#03--defensive-security) | Detection, monitoring, hardening and remediation. |
-| [References & Templates](docs/README.md#04--references--templates) | Official sources and reusable technical-note templates. |
+| [Fundamentals](docs/README.md#01--fundamentals) | Networking, HTTP, metadata, authentication and Linux concepts required for this room. |
+| [Instructor Workflow](docs/README.md#02--instructor-workflow) | The practical sequence from web inspection through privilege review. |
+| [Defensive Context](docs/README.md#03--defensive-context) | Detection and hardening notes tied to the services and techniques in the lesson. |
+| [References & Templates](docs/README.md#04--references--templates) | Official manuals and concise technical-note templates. |
 
 **Main navigation:** [Documentation Index](docs/README.md) · [Learning Plan](docs/LEARNING-PLAN.md) · [Tool Reference](tools/README.md) · [Three.js Frontend](site/)
 
