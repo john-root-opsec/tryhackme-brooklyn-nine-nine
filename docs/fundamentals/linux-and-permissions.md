@@ -1,58 +1,79 @@
-# Linux & Permissions Fundamentals
+# Linux & Permissions — Lab Fundamentals
 
-## Purpose
+## Why this topic appears in the lesson
 
-Linux enumeration means understanding the operating system's identity model, filesystem, processes and privilege boundaries.
+After the instructor demonstrates remote access, the workflow moves into the Linux environment. The focus is identifying the current account, understanding the home-directory layout and reviewing the permissions available to that account.
 
-## Shell and command execution
+## Linux identity
 
-A shell parses commands, expands variables and globs, connects pipelines and launches processes. Exit codes communicate success or failure; conventionally, zero indicates success.
+Every Linux process runs with user and group identities. The identity determines which files and operations the process may access, subject to standard permissions and additional security controls.
 
-```bash
-whoami
-id
-pwd
-printf '%s\n' "$SHELL"
-uname -a
-```
+Useful concepts:
+- username and numeric user ID (UID);
+- primary and supplementary groups;
+- current working directory;
+- home directory;
+- process identity and effective identity.
 
-## Users and groups
+A successful SSH login establishes a session as one account. It does not automatically provide administrative privileges.
 
-Linux processes run with user and group identities. File access checks use ownership and permission bits, while additional controls may be supplied by ACLs, capabilities, namespaces and mandatory access-control systems.
+## Filesystem navigation
 
-## File permissions
+Linux uses a hierarchical filesystem. User home directories are commonly located under `/home`, while system configuration and account information are stored in standard system paths.
 
-The familiar permission classes are user (owner), group and others. The basic permissions are read (`r`), write (`w`) and execute (`x`).
+When reviewing a directory:
+- identify the owner and group;
+- inspect permissions;
+- distinguish files from directories;
+- understand whether the current account can read, modify or traverse the item.
 
-For a file, execute permits running it as a program when other conditions are met. For a directory, execute permits traversal/search. Directory write permission affects creating, removing or renaming entries, subject to sticky-bit and other rules.
+## Permission model
 
-```bash
-ls -l
-stat path/to/file
-namei -l path/to/file
-```
+The traditional permission classes are:
+- **user** — the file owner;
+- **group** — members of the file's group;
+- **others** — all other users.
 
-## Processes and services
+The basic permission bits are read (`r`), write (`w`) and execute (`x`). Their effect differs for files and directories.
 
-A process is a running program instance with an identity, environment, open files and resource limits. Services are commonly managed by a service manager such as systemd.
+| Object | Permission | Meaning |
+|:--|:--|:--|
+| File | Read | Read the file contents. |
+| File | Write | Modify the file contents. |
+| File | Execute | Execute the file as a program, if its format and other controls permit it. |
+| Directory | Read | List directory entries. |
+| Directory | Write | Create, remove or rename entries, subject to other controls. |
+| Directory | Execute | Traverse/search the directory. |
 
-```bash
-ps aux
-systemctl --type=service --state=running
-ss -lntup
-```
+## Sudo policy
 
-Some inspection commands may require elevated privileges to show all details.
+`sudo` allows a user to run explicitly permitted commands with another identity, often root. The `sudo -l` operation lists the commands the current account is allowed to run.
 
-## sudo and privilege boundaries
+The security review must consider:
+- which command is permitted;
+- which target identity is allowed;
+- whether a password is required;
+- whether arguments are restricted;
+- whether the permitted program can launch other commands or provide an unrestricted function.
 
-`sudo` allows authorized users to execute permitted commands under another identity, often root. Its policy can restrict commands, arguments and target users. Broad or poorly designed rules can create unintended privilege paths.
+A limited-looking rule can still be excessive if the selected program exposes functionality outside the intended task.
 
-## Defensive perspective
+## Root and privilege boundaries
 
-- Apply least privilege to users and services.
-- Avoid world-writable executable paths.
-- Review ownership and permissions on sensitive files.
-- Limit sudo rules to the minimum required commands.
-- Audit privileged binaries and service configurations.
-- Keep operating-system packages patched.
+Root is the superuser identity on a conventional Linux system. Reaching root means crossing from a restricted user context into a highly privileged one.
+
+Do not confuse:
+- access to a user account;
+- permission to read a particular file;
+- permission to run a command through sudo;
+- full administrative control.
+
+These are separate authorization states.
+
+## Defensive relevance
+
+- Apply least privilege to user and service accounts.
+- Restrict sudo rules to the minimum required command and arguments.
+- Protect sensitive home directories and system files.
+- Avoid granting privileged access to general-purpose utilities unless the behavior is fully constrained.
+- Audit privileged rules and review them when responsibilities change.
