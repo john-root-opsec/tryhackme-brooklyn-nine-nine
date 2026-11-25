@@ -4,69 +4,62 @@
 
 **PRECINCT 99 / TOOL REFERENCE**
 
-<sub>TOOLS ARE METHODS — UNDERSTANDING THE OUTPUT IS THE SKILL</sub>
+<sub>TOOLS SHOWN IN THE INSTRUCTOR WORKFLOW</sub>
 
 </div>
 
 # Field Toolkit
 
-This reference explains each tool's role in the learning path. It is an educational catalogue, not a record of completed actions or a target-specific walkthrough.
+This reference is limited to the tools and interfaces demonstrated or directly used in the instructor's workflow. It explains their role in the room without recording target-specific commands, credentials or findings.
 
-## 01 / Workstation & connectivity
+## 01 / Environment & web inspection
 
-| Tool | Purpose | Knowledge to develop |
+| Tool | Role in the workflow | Technical focus |
 |:--|:--|:--|
-| **Terminal / Bash** | Execute commands and manage the local workflow. | Shell parsing, quoting, pipes, exit codes, processes and permissions. |
-| **Kali Linux** | Security-testing operating system. | Package management, filesystem layout, services and tool environment. |
-| **OpenVPN** | Connect the local workstation to the authorized training network. | Tunnel interfaces, routing tables, DNS behavior and VPN scope. |
-| **Firefox Developer Tools** | Inspect web content and HTTP exchanges. | DOM, page source, network requests, headers, cookies and browser storage. |
+| **Kali Linux / Terminal** | Local assessment environment and command-line workspace. | Shell navigation, command execution, files and permissions. |
+| **OpenVPN** | Connect the local workstation to the authorized TryHackMe network. | VPN interface, routing and reachability. |
+| **Firefox / Developer Tools** | Open the HTTP service and inspect page behavior and source. | HTTP, HTML source, loaded resources and browser requests. |
+| **ping** | Check basic reachability of the deployed lab host. | ICMP Echo Request/Reply and packet loss. |
+| **wget** | Retrieve a referenced web resource for local inspection. | HTTP GET, response status and downloaded files. |
+| **ExifTool** | Inspect metadata in the downloaded image. | Image metadata fields and information disclosure. |
 
-## 02 / Reconnaissance & discovery
+## 02 / Web content discovery
 
-| Tool | Purpose | Knowledge to develop |
+| Tool / resource | Role in the workflow | Technical focus |
 |:--|:--|:--|
-| **Nmap** | Host discovery and port/service assessment. | TCP/UDP, SYN scans, port states, service identification and scan limitations. |
-| **Gobuster** | Discover candidate web paths and resources. | HTTP response behavior, content discovery and false positives. |
-| **ExifTool** | Read metadata from supported files. | Metadata formats, privacy leakage and evidence handling. |
+| **SecLists** | Supply a candidate-path wordlist. | Wordlists, coverage and candidate generation. |
+| **Gobuster** | Enumerate candidate web paths. | HTTP response codes, redirects, 403/404 behavior and false positives. |
 
-## 03 / Services & authentication
+## 03 / Network and services
 
-| Tool / protocol | Purpose | Knowledge to develop |
+| Tool / protocol | Role in the workflow | Technical focus |
 |:--|:--|:--|
-| **FTP client** | Interact with a file-transfer service in an authorized lab. | Control/data channels, anonymous access, permissions and cleartext risk. |
-| **SSH** | Secure remote administration. | Host keys, public-key authentication, session security and access policy. |
-| **Hydra** | Controlled authentication-security testing. | Password risk, rate limiting, lockout trade-offs and authentication monitoring. |
-| **RockYou wordlist** | Dataset used to discuss password quality and guessability. | Password reuse, weak patterns and defensive controls. |
+| **Nmap** | Discover TCP ports and identify service/version information. | SYN scan, port states, service probes and scan limitations. |
+| **FTP client** | Review the file-transfer service and its access behavior. | Authentication modes, directory listing, data transfer and permissions. |
 
-## 04 / Linux privilege concepts
+## 04 / Authentication and remote access
 
-| Reference | Purpose | Knowledge to develop |
+| Tool / resource | Role in the workflow | Technical focus |
 |:--|:--|:--|
-| **GTFOBins** | Reference how standard Unix binaries can become risky in permissive execution contexts. | Sudo policy, SUID/SGID, capabilities, least privilege and secure configuration. |
-| **less** | Terminal pager used to view text. | How utility behavior interacts with execution permissions and privilege boundaries. |
+| **RockYou** | Provide a sample password wordlist for the controlled lab exercise. | Password quality, reuse and wordlist-based auditing. |
+| **Hydra** | Demonstrate controlled authentication testing within the room. | Authentication attempts, rate limits, account monitoring and lockout considerations. |
+| **SSH** | Establish a remote Linux session when authorized lab credentials are available. | Encrypted remote access, authentication and host identity. |
 
-## 05 / Defensive analysis
+## 05 / Linux privilege review
 
-| Tool | Purpose | Knowledge to develop |
+| Tool / reference | Role in the workflow | Technical focus |
 |:--|:--|:--|
-| **Wireshark** | Inspect packet captures and protocol exchanges. | TCP handshakes, DNS/HTTP metadata, TLS visibility and evidence privacy. |
-| **Linux logs / journal** | Review operating-system and service events. | Authentication events, timestamps, service activity and incident timelines. |
+| **sudo** | Inspect which privileged commands an account is allowed to execute. | sudoers policy, command scope and least privilege. |
+| **GTFOBins** | Research the security implications of a permitted Unix binary. | Unsafe privilege delegation and shell-capable program behavior. |
+| **Terminal pager** | Understand why granting privileged access to a general-purpose text utility can be dangerous. | Program features, execution context and privilege boundaries. |
 
-## Learning method
+## Usage principles
 
-For each tool, ask:
-1. What problem does the tool solve?
-2. What protocol, API or operating-system feature does it rely on?
-3. What does each important option change?
-4. What does the output prove—and what does it not prove?
-5. What could create a false positive?
-6. What telemetry could a defender use to observe this activity?
-7. What configuration would reduce the associated risk?
+- Understand each tool option before running it.
+- Use the current TryHackMe target address, not the address shown in a recording.
+- Validate interesting HTTP responses rather than assuming every discovered path is useful.
+- Do not infer a vulnerability from a port number or banner alone.
+- Use Hydra and password wordlists only inside the explicitly authorized room.
+- Never save VPN profiles, passwords, private keys or room flags in this repository.
 
-## Responsible-use boundary
-
-Use tools only on systems you own or are explicitly authorized to test. A tool's availability does not grant permission to scan, enumerate or authenticate to third-party systems.
-
-Do not commit VPN profiles, credentials, private keys, raw packet captures containing sensitive information, target-specific evidence, active-room solution material, downloaded wordlists or large external datasets.
-
-For the concepts behind each phase, see the [Documentation Index](../docs/README.md).
+This page describes the instructor's toolkit; it is not a list of additional tools we plan to introduce into the room.
