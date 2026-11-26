@@ -1,43 +1,50 @@
-# 00 — Environment Setup
+# 01 — Lab Environment & VPN Connectivity
 
 ## Objective
 
-Prepare the local Kali Linux workstation and connect it to the TryHackMe room through the approved access path.
+Prepare the local Kali Linux workstation and connect it to the TryHackMe room through the approved VPN path. This stage establishes the network context required for subsequent scans.
 
-## Instructor workflow
+## Observed workflow
 
-1. Open the Brooklyn Nine-Nine room.
-2. Start the lab machine and wait until the platform reports that it is running.
-3. Note the current target address displayed by TryHackMe.
-4. Use the AttackBox or connect the local Kali workstation through the TryHackMe OpenVPN configuration.
-5. When using local Kali, keep the VPN profile in a private local directory and do not add it to Git.
-6. Confirm the VPN interface and route.
-7. Perform a basic reachability check before starting service discovery.
+The supplied terminal evidence shows OpenVPN establishing a TLS-protected session with the TryHackMe VPN endpoint, creating a tunnel interface, receiving route configuration and assigning an address to the tunnel. A subsequent ICMP test received four replies with no packet loss.
 
-## Local checks
+The raw VPN profile name, local tunnel address and full connection transcript are not reproduced here. They are not required to explain the workflow.
+
+## Local verification
+
+The captured workflow checked the tunnel interface with:
 
 ```bash
-ip -br addr
-ip route
+ip -br addr show tun0
 ```
 
-The interface and route output should show that the VPN is active and that the training network is routed through the expected tunnel.
+- `ip` inspects and manages network interfaces and routes.
+- `-br` requests brief output.
+- `addr` selects interface address information.
+- `show tun0` limits output to that interface name. The interface name can differ between sessions.
 
-## ICMP reachability
+Reachability was checked with ICMP:
 
-A ping test can confirm that the target responds to ICMP from the current network path. It is not a port scan, and a lack of response does not necessarily mean the target is offline.
+```bash
+ping -c 4 <LAB_TARGET>
+```
 
-## Operational notes
+- `ping` sends ICMP Echo Requests and reports Echo Replies.
+- `-c 4` sends four requests and then stops.
+- `<LAB_TARGET>` represents the current address provided by the active TryHackMe room.
 
-- Use the current target address from the active room session.
-- Do not reuse the address shown in the instructor's recording.
-- Keep the OpenVPN terminal running while the VPN is required.
-- Stop the AttackBox if the platform's connection rules require a single active VPN connection.
-- Never commit the `.ovpn` file, passwords or other authentication material.
+The observed result was four replies and 0% packet loss. This supports basic IP reachability at that moment; it does not prove that a TCP service is listening.
 
-## Completion criteria
+## Interpretation
 
-- Lab machine is running.
-- Local Kali has an active approved connection.
-- VPN interface and routing are present.
-- Basic target reachability has been checked.
+The VPN establishes a routed path into the authorized training network. ICMP provides a simple reachability check before service discovery. ICMP can be filtered independently of TCP, so a failed ping would not by itself prove that the host was offline.
+
+## Operational security
+
+- Keep VPN profiles and certificates outside source control.
+- Do not reuse the target address shown in a recording; use the address assigned by the current room session.
+- Avoid publishing local tunnel addresses or connection logs that reveal personal network context.
+
+## Result
+
+The evidence supports an active TryHackMe VPN connection and successful reachability testing, allowing the assessment to proceed.
