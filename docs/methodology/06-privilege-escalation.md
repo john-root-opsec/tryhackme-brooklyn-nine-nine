@@ -1,52 +1,54 @@
-# 06 — Privilege Escalation Review
+# 07 — Privilege Escalation: Sudo Misconfiguration
 
 ## Objective
 
-Follow the instructor's final technical stage: inspect sudo permissions, research the security implications of the permitted Unix binary and understand how an overly broad privilege rule can cross a user/root boundary.
+Review the authenticated user's sudo permissions, identify the security impact of the permitted program and verify whether the resulting execution context crosses the user/root boundary.
 
-## Review sudo policy
+## 1. Review sudo policy
 
-The instructor uses sudo policy inspection to determine which commands the authenticated account is allowed to execute with elevated privileges.
+The supplied terminal evidence shows `sudo -l` reporting that the authenticated lab user could execute `/usr/bin/less` as root without being prompted for a password.
 
-The important fields are:
-- the user and host context;
-- the permitted command;
-- the target execution identity;
-- whether a password is required;
-- argument restrictions or lack of restrictions.
+The important security properties were:
 
-A command being listed in sudo policy does not automatically mean unrestricted root access. The behavior of that program and the permitted arguments matter.
+- the command was permitted through sudo;
+- the execution identity was root;
+- the rule did not require a password;
+- `less` is an interactive pager with capabilities beyond passive text viewing.
 
-## Research the permitted binary
+This was a configuration finding, not a defect in the pager itself.
 
-The instructor consults GTFOBins to understand how a legitimate Unix utility may behave when it is granted elevated execution rights.
+## 2. Why a pager can become a privilege path
 
-GTFOBins is a reference for reviewing:
-- whether a program can launch another command;
-- whether it can open a shell or invoke a system function;
-- whether the behavior depends on the execution context;
-- what administrator configuration makes the behavior dangerous.
+`less` is designed to display text interactively. Its interactive feature set can invoke an external command or shell. When the pager runs with elevated privileges and policy does not constrain its behavior, that child process can inherit the elevated execution context.
 
-The exact room-specific binary behavior and exploitation sequence are intentionally omitted while the room is active.
+GTFOBins is a reference for reviewing how legitimate Unix binaries may be misused when granted excessive privileges. The key lesson is to evaluate the full behavior of a program, not only its apparent primary purpose.
 
-## Verify privilege context
+## 3. Observed verification
 
-Security testing should distinguish between:
-- the original authenticated account;
-- a process running with elevated privileges;
-- a shell operating as root.
+The supplied screenshots show the privileged pager being used to reach a shell and an identity check returning `root`. A subsequent capture shows access to the root directory and the root-level flag file.
 
-Verification should establish the effective identity rather than relying on the fact that a command was accepted.
+This report describes the mechanism and result, but omits the exact shell-escape invocation and the flag value. A technical portfolio can explain the misconfiguration and impact without publishing reusable credentials or room answer tokens.
 
-## Defensive relevance
+## 4. Finding summary
 
-- Keep sudo rules narrow and task-specific.
-- Avoid granting unrestricted access to general-purpose utilities.
-- Restrict command arguments where possible.
-- Review rules that do not require a password.
-- Audit privileged binaries and service accounts.
-- Remove excessive permissions and validate the correction.
+| Field | Assessment |
+|:--|:--|
+| Finding | Overly permissive sudo rule for a general-purpose pager |
+| Affected control | Privileged command delegation |
+| Security impact | The permitted user could escape the intended pager function and obtain a root shell in the lab |
+| Root cause | Delegating a shell-capable interactive program with root privileges without adequate restrictions |
+| Evidence | Sudo policy output, root identity verification and root-directory access |
+| Remediation | Remove the rule or replace it with a narrowly scoped, non-interactive administrative operation |
 
-## Publication boundary
+## 5. Remediation
 
-Do not publish the room's exact sudo rule, privileged binary, shell-escape sequence, root proof output or flags while the room is active.
+- Remove sudo permissions for general-purpose pagers and other shell-capable utilities where they are not required.
+- Prefer a dedicated administrative command with fixed behavior.
+- Restrict command arguments and target identities.
+- Require authentication for privileged operations where feasible.
+- Audit sudoers entries for programs that can invoke shells or external commands.
+- Re-test the policy after remediation to confirm that the unintended privilege path is closed.
+
+## Result
+
+The supplied terminal evidence supports a successful transition from the authenticated lab user to root through an overly permissive sudo rule for `less`. Root identity was verified and the root-level objective was reached.
