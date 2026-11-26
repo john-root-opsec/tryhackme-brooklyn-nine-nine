@@ -1,51 +1,61 @@
-# 02 — Network Reconnaissance
+# 02 — Network Reconnaissance & Service Identification
 
 ## Objective
 
-Follow the instructor's network-scanning stage: use Nmap to identify reachable TCP ports, then perform service/version identification to understand what is listening.
+Identify reachable TCP services on the current lab target, then use service detection to gather product and version information.
 
-## 1. Understand the scan type
+## 1. TCP SYN discovery
 
-The instructor demonstrates a TCP SYN scan. Before running it, understand:
-- why packet-level scan methods need appropriate privileges on Linux;
-- how a SYN probe is interpreted;
-- how a firewall or packet filter can affect the response;
-- why scan output is a point-in-time observation.
+The supplied evidence shows a TCP SYN scan using Nmap's `-sS` mode with `--open` to limit displayed results to ports reported open.
 
-If Nmap reports that elevated privileges are required, the scan did not complete with the requested method. Correct the local permission issue before interpreting target results.
+```bash
+sudo nmap -sS --open <LAB_TARGET>
+```
 
-## 2. Read port states
-
-| State | Interpretation |
+| Option | Meaning |
 |:--|:--|
-| `open` | A service appears to accept connections on the port. |
-| `closed` | The host responds, but no service is listening on that port. |
-| `filtered` | Filtering prevents Nmap from determining the state. |
+| `sudo` | Runs Nmap with elevated local privileges needed for raw-packet SYN scanning on this system. |
+| `nmap` | Network exploration and port-scanning utility. |
+| `-sS` | TCP SYN scan. Nmap sends SYN probes and interprets responses to classify port states. |
+| `--open` | Displays open or potentially open ports rather than listing every closed/filtered result. |
+| `<LAB_TARGET>` | Placeholder for the current room-assigned target address. |
 
-Do not treat a port number as proof of a specific product. Nmap's service label may initially be based on the conventional port mapping.
+The observed scan reported the host as up and identified three open TCP ports corresponding to FTP, SSH and HTTP. The raw target address is omitted from this report.
 
-## 3. Identify services and versions
+A SYN scan is a discovery technique, not a complete security assessment. Filtering, packet loss, service changes and timing can affect results.
 
-Service/version detection is a separate step from basic port discovery. It sends probes and compares responses to identify the application and possible version.
+## 2. Service/version detection
 
-A version string:
-- can help select the next investigation step;
-- may be hidden, modified or incomplete;
-- does not prove that the software is vulnerable;
-- must be interpreted with patch status and configuration in mind.
+The supplied evidence also shows a targeted service/version scan:
 
-## 4. Keep the scope precise
+```bash
+sudo nmap -sV -p21,22,80 <LAB_TARGET>
+```
 
-- Scan only the current target address shown by the active TryHackMe room.
-- Do not use the historical target address from the instructor's video.
-- Do not expand the scan to unrelated hosts or networks.
-- Keep raw target output in private notes while the room's sharing restrictions apply.
+| Option | Meaning |
+|:--|:--|
+| `-sV` | Probes open ports to identify the service and, where possible, its version. |
+| `-p21,22,80` | Restricts the scan to TCP ports 21, 22 and 80. |
+| `sudo` | Supplies local privileges required by the selected scan behavior. |
+
+The screenshot reports:
+
+| Port | Service | Observed identification |
+|:--:|:--|:--|
+| 21/tcp | FTP | vsftpd 3.0.3 |
+| 22/tcp | SSH | OpenSSH 7.6p1 (Ubuntu build string shown by Nmap) |
+| 80/tcp | HTTP | Apache httpd 2.4.29 (Ubuntu) |
+
+These are scanner observations from the lab at the time of testing. A banner or version string alone does not establish exploitability; patch level, configuration and reachable functionality must also be assessed.
+
+## 3. Why this changed the next step
+
+The scan provided a service map for the next investigation stages: HTTP was investigated through browser/source inspection, FTP was reviewed for authentication and file access, and SSH was reviewed as a remote-authentication surface.
 
 ## Defensive relevance
 
-Port exposure should match an explicit business requirement. Defenders can reduce risk by disabling unused listeners, restricting administrative services, segmenting networks and monitoring unusual connection patterns.
-
-## Related study
-
-- [Networking & TCP/IP](../fundamentals/networking-and-tcp-ip.md)
-- [Official Nmap documentation](../references/README.md)
+- Expose only required services.
+- Restrict administrative services to trusted network paths.
+- Keep service packages patched.
+- Review service banners and avoid unnecessary information disclosure.
+- Monitor unusual connection patterns and repeated service probing.
