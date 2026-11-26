@@ -36,3 +36,17 @@ Anonymous FTP can expose internal notes or files to anyone who can reach the ser
 ## Result
 
 The evidence supports anonymous FTP authentication, directory listing, retrieval of a text file and discovery of a password-related clue. The room-specific file content is not reproduced.
+
+## Practical evidence
+
+![Anonymous FTP login and note_to_jake.txt discovery](../evidence/07-ftp-anonymous.png)
+
+*Evidence 07 — The FTP service accepts anonymous authentication and lists `note_to_jake.txt`.*
+
+![FTP file retrieval](../evidence/08-ftp-download.png)
+
+*Evidence 08 — The file transfer completes and reports 119 bytes received.*
+
+![Retrieved note content](../evidence/09-clue-analysis.png)
+
+*Evidence 09 — The note warns Jake that his password is weak; this clue motivates a controlled SSH password audit within the room.*
