@@ -48,3 +48,9 @@ The VPN establishes a routed path into the authorized training network. ICMP pro
 ## Result
 
 The evidence supports an active TryHackMe VPN connection and successful reachability testing, allowing the assessment to proceed.
+
+## Practical evidence
+
+![OpenVPN tunnel initialization and route setup](../evidence/01-vpn-tunnel.png)
+
+*Evidence 01 — OpenVPN reports that initialization completed and the tunnel interface was brought up.*
