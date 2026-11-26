@@ -63,3 +63,21 @@ Source inspection identified a static asset and an investigative clue. Metadata 
 - Sanitize metadata before publishing images.
 - Disable unnecessary server-status endpoints and restrict configuration-file access.
 - Monitor path-guessing patterns and validate access controls server-side.
+
+## Practical evidence
+
+![Brooklyn Nine-Nine web page served by the target](../evidence/03-web-service.png)
+
+*Evidence 03 — The target's HTTP service presents the Brooklyn Nine-Nine themed page.*
+
+![HTML source referencing brooklyn99.jpg and the steganography clue](../evidence/04-html-source.png)
+
+*Evidence 04 — The delivered source references `brooklyn99.jpg` and contains the steganography hint.*
+
+![Downloaded image inspected with ExifTool](../evidence/05-image-metadata.png)
+
+*Evidence 05 — `wget` retrieves the referenced JPEG and ExifTool reports its file metadata and dimensions.*
+
+![Gobuster directory enumeration output](../evidence/06-gobuster.png)
+
+*Evidence 06 — Gobuster identifies the accessible index and several paths returning HTTP 403; these responses require interpretation rather than assuming the paths are exploitable.*
