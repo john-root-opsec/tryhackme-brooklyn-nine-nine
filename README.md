@@ -25,7 +25,7 @@ The workflow covered network reconnaissance, web inspection, image metadata revi
 
 This is an educational lab write-up, not a claim of commercial penetration-testing experience. It demonstrates how I approached a controlled environment, interpreted evidence and connected technical findings to defensive controls.
 
-> **Lab status:** Completed. The original room-completion screenshot is not embedded because it contains personal identifying information. Any public copy must be redacted before publication.
+ > **Lab status:** Completed. The practical screenshots, organized by assessment stage, are available in the [Practical Evidence Archive](docs/evidence/README.md). Passwords and flag values are redacted; the completion capture retains only the first name João.
 
 ### QUICK FACTS
 
