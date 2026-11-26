@@ -59,3 +59,9 @@ The scan provided a service map for the next investigation stages: HTTP was inve
 - Keep service packages patched.
 - Review service banners and avoid unnecessary information disclosure.
 - Monitor unusual connection patterns and repeated service probing.
+
+## Practical evidence
+
+![ICMP verification and Nmap SYN scan](../evidence/02-network-scan.png)
+
+*Evidence 02 — ICMP replies confirm reachability; the SYN scan identifies TCP/21, TCP/22 and TCP/80 as open in this lab run.*
