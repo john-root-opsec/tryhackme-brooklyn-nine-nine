@@ -41,3 +41,13 @@ A successful SSH login grants the permissions assigned to that account. It is no
 ## Result
 
 The supplied evidence supports a successful controlled password audit and subsequent SSH access as a non-root lab user. The credential value is not published.
+
+## Practical evidence
+
+![Hydra reports a valid SSH credential pair](../evidence/10-hydra-result.png)
+
+*Evidence 10 — Hydra reports one valid pair. The password value is redacted; the result is retained.*
+
+![SSH login and authenticated Jake session](../evidence/11-ssh-session.png)
+
+*Evidence 11 — The SSH session is established as the `jake` user; subsequent commands run in that account context.*
