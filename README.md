@@ -2,16 +2,12 @@
 
 <img src="assets/motion/header-green-animated.gif?v=3" width="100%" alt="Brooklyn Nine-Nine — Precinct 99 Cyber Operations with a geographically accurate rotating Earth globe" />
 
-<br />
-
 **TRYHACKME / BROOKLYN NINE-NINE / LINUX PENETRATION TESTING**
 
 <img src="https://img.shields.io/badge/PLATFORM-TRYHACKME-39FF88?style=for-the-badge&labelColor=07110B&logo=tryhackme&logoColor=39FF88" alt="TryHackMe" />
 <img src="https://img.shields.io/badge/FOCUS-OFFENSIVE_SECURITY-F5D90A?style=for-the-badge&labelColor=07110B" alt="Offensive Security" />
 <img src="https://img.shields.io/badge/ENVIRONMENT-KALI_LINUX-39FF88?style=for-the-badge&labelColor=07110B&logo=kalilinux&logoColor=39FF88" alt="Kali Linux" />
-<img src="https://img.shields.io/badge/STATUS-IN_PROGRESS-9BFFBC?style=for-the-badge&labelColor=07110B" alt="In progress" />
-
-<br />
+<img src="https://img.shields.io/badge/STATUS-COMPLETED-9BFFBC?style=for-the-badge&labelColor=07110B" alt="Completed" />
 
 <em>Observe the surface. Understand the signal. Document the evidence.</em>
 
@@ -19,143 +15,129 @@
 
 ---
 
-<div align="center">
-  <img src="assets/motion/01-case-file.svg" width="100%" alt="01 — Case File" />
-</div>
+<div align="center"><img src="assets/motion/01-case-file.svg" width="100%" alt="01 — Case File" /></div>
 
 ## CASE FILE / 001
 
-**Brooklyn Nine-Nine** is a guided Linux penetration-testing lab documented in the same order demonstrated by the instructor. The practical workflow covers web reconnaissance, image metadata review, directory discovery, Nmap scanning, FTP investigation, password auditing, SSH access, Linux enumeration and privilege-boundary analysis.
+**Brooklyn Nine-Nine** is a completed, authorized TryHackMe Linux penetration-testing exercise. This repository records the methodology, technical observations, security implications and lessons learned during the lab.
 
-This repository contains concise technical notes for the tools and concepts used in that workflow, together with the project's separate cyber-operations frontend built with HTML, CSS, JavaScript and Three.js. The emphasis is on understanding each step—not collecting answers.
+The workflow covered network reconnaissance, web inspection, image metadata review, web-path discovery, FTP access review, SSH authentication testing, Linux post-exploitation enumeration and a sudo misconfiguration that allowed a privilege-boundary escape.
 
-> **Current status:** the lab is in progress. This repository does not publish room answers, flags, credentials, target-specific exploitation steps, or a walkthrough while the room's sharing restrictions apply.
+This is an educational lab write-up, not a claim of commercial penetration-testing experience. It demonstrates how I approached a controlled environment, interpreted evidence and connected technical findings to defensive controls.
+
+> **Lab status:** Completed. The original room-completion screenshot is not embedded because it contains personal identifying information. Any public copy must be redacted before publication.
+
+### QUICK FACTS
+
+| Item | Detail |
+|:--|:--|
+| Platform | TryHackMe |
+| Room | Brooklyn Nine-Nine |
+| Environment | Kali Linux connected to the assigned lab network |
+| Assessment type | Guided Linux penetration-testing lab |
+| Main focus | Reconnaissance, service enumeration, authentication and Linux privilege boundaries |
+| Completion | Completed — 1 task / 60 points shown by the room completion screen |
 
 ---
 
-<div align="center">
-  <img src="assets/motion/02-field-toolkit.svg" width="100%" alt="02 — Field Toolkit" />
-  <br />
-  <img src="assets/tools/field-toolkit.svg" width="100%" alt="Custom icon grid for Terminal, Kali Linux, OpenVPN, Nmap, Gobuster, ExifTool, Hydra, FTP, SSH, and GTFOBins/less" />
-</div>
+<div align="center"><img src="assets/motion/02-field-toolkit.svg" width="100%" alt="02 — Field Toolkit" /><br /><img src="assets/tools/field-toolkit.svg" width="100%" alt="Custom icon grid for the tools used in the lab" /></div>
 
-### TOOLKIT / WHAT EACH TOOL IS FOR
+### TOOLKIT / WHAT EACH TOOL CONTRIBUTED
 
-| Tool | Role in the instructor's workflow |
+| Tool | Role in the assessment |
 |:--|:--|
 | **Kali Terminal / Bash** | Run commands, inspect output and manage downloaded files. |
-| **OpenVPN** | Connect the local Kali workstation to the authorized TryHackMe network. |
-| **Firefox / Developer Tools** | Inspect the HTTP page, delivered source and browser requests. |
+| **OpenVPN** | Connect the workstation to the authorized TryHackMe network. |
+| **Firefox / Developer Tools** | Inspect the HTTP page, source and referenced resources. |
 | **ping** | Check basic reachability of the deployed lab host. |
-| **wget** | Retrieve a web image for local metadata inspection. |
-| **ExifTool** | Review metadata embedded in the downloaded image. |
-| **SecLists** | Provide candidate paths for web content discovery. |
-| **Gobuster** | Enumerate candidate directories and files over HTTP. |
-| **Nmap** | Perform TCP SYN scanning and service/version identification. |
-| **FTP client** | Review FTP authentication, directory access and file-transfer behavior. |
-| **RockYou** | Supply a known wordlist for the controlled password-auditing stage. |
-| **Hydra** | Demonstrate password-based authentication testing in the authorized lab. |
-| **SSH** | Access the Linux service using authorized lab credentials. |
-| **sudo / GTFOBins** | Review delegated privileges and the security implications of permitted Unix binaries. |
-
-<sub>This list follows the tools and interfaces shown in the lesson. It does not publish target-specific results, credentials, flags or exploitation commands.</sub>
-
-### PROTOCOLS & SYSTEM CONCEPTS
-
-<div align="center">
-
-<img src="https://img.shields.io/badge/TCP%2FIP-NETWORKING-39FF88?style=flat-square&labelColor=101914" alt="TCP/IP" />
-<img src="https://img.shields.io/badge/HTTP-WEB-39FF88?style=flat-square&labelColor=101914" alt="HTTP" />
-<img src="https://img.shields.io/badge/FTP-FILE_TRANSFER-F5D90A?style=flat-square&labelColor=101914" alt="FTP" />
-<img src="https://img.shields.io/badge/SSH-REMOTE_ACCESS-39FF88?style=flat-square&labelColor=101914" alt="SSH" />
-<img src="https://img.shields.io/badge/LINUX-PERMISSIONS-F5D90A?style=flat-square&labelColor=101914" alt="Linux permissions" />
-<img src="https://img.shields.io/badge/SUDO-PRIVILEGES-39FF88?style=flat-square&labelColor=101914" alt="Sudo privileges" />
-
-</div>
+| **Nmap** | Discover TCP ports and identify exposed services and versions. |
+| **wget** | Retrieve the web image for local analysis. |
+| **ExifTool** | Review metadata associated with the downloaded image. |
+| **SecLists / Gobuster** | Enumerate candidate web paths and interpret HTTP responses. |
+| **FTP client** | Review anonymous access, directory listing and file-transfer behavior. |
+| **RockYou / Hydra** | Perform password auditing within the authorized training environment. |
+| **SSH** | Establish a remote session as the discovered lab account. |
+| **sudo / less / GTFOBins** | Review a privileged command rule and understand the risk of shell-capable utilities. |
 
 ---
 
-<div align="center">
-  <img src="assets/motion/03-lab-method.svg" width="100%" alt="03 — Lab Methodology" />
-</div>
+<div align="center"><img src="assets/motion/03-lab-method.svg" width="100%" alt="03 — Lab Methodology" /></div>
 
-### HOW THE LAB WILL BE STUDIED
+## ATTACK METHODOLOGY
 
-| Phase | Instructor step | Technical focus |
+| Phase | Activity | Outcome |
 |:--:|:--|:--|
-| **00** | Environment setup | Start the lab, connect through VPN and verify host reachability. |
-| **01** | Web reconnaissance | Inspect the page and HTML source; retrieve the image and review its metadata. |
-| **02** | Directory discovery | Use SecLists and Gobuster to identify candidate web resources. |
-| **03** | Network scanning | Use Nmap for TCP SYN scanning and service/version identification. |
-| **04** | FTP investigation | Review FTP access behavior, directory listing and file-transfer permissions. |
-| **05** | SSH authentication | Study RockYou, Hydra and remote SSH authentication. |
-| **06** | Linux enumeration | Inspect the authenticated account, home directories and permission context. |
-| **07** | Privilege review | Examine sudo policy and use GTFOBins to understand the permitted binary's risk. |
+| 01 | VPN and connectivity | Established the approved lab network path and verified reachability. |
+| 02 | Network reconnaissance | Identified FTP, SSH and HTTP as exposed TCP services. |
+| 03 | Web reconnaissance | Inspected page source, retrieved a referenced image, reviewed metadata and enumerated candidate paths. |
+| 04 | FTP investigation | Identified anonymous access and retrieved a lab note for analysis. |
+| 05 | SSH authentication | Conducted controlled password auditing and established the lab user session. |
+| 06 | Linux enumeration | Inspected user context, home directories and the user-level objective. |
+| 07 | Privilege escalation | Identified an over-permissive sudo rule for a general-purpose pager and verified elevated execution. |
+| 08 | Completion | Reached the root-level objective and completed the TryHackMe room. |
 
-**Method:** follow the instructor's order → understand the protocol or operating-system feature → interpret the observed behavior → connect it to the relevant security control.
+### KEY TECHNICAL OBSERVATIONS
+
+- The target exposed FTP, SSH and HTTP during the observed scan.
+- The HTTP page referenced a static image. Its source and metadata were inspected.
+- Gobuster returned successful and forbidden HTTP responses; status codes required interpretation.
+- FTP permitted anonymous authentication in the lab and exposed a text note.
+- The note provided a clue that informed the password-auditing stage.
+- SSH access was obtained as the lab user after controlled authentication testing.
+- Linux enumeration showed that an authenticated user context and root privileges are separate boundaries.
+- The sudo policy permitted passwordless execution of `less`; its shell-capable behavior enabled a root shell in the lab.
+- Root context was verified with an identity check, and the root-level objective was reached.
+
+See the [technical walkthrough](docs/README.md#02--assessment-walkthrough) for reasoning, command explanations and defensive implications.
 
 ---
 
-<div align="center">
-  <img src="assets/motion/04-learning-log.svg" width="100%" alt="04 — Learning Log" />
-</div>
+<div align="center"><img src="assets/motion/04-learning-log.svg" width="100%" alt="04 — Learning Log" /></div>
 
-### PROJECT DOCUMENTATION
+## DOCUMENTATION
 
-<div align="center">
-  <img src="assets/motion/04-learning-log.svg" width="100%" alt="Learning log and documentation archive" />
-</div>
-
-**Documentation is divided into four tracks:**
-
-| Track | What it contains |
+| Track | Contents |
 |:--|:--|
-| [Fundamentals](docs/README.md#01--fundamentals) | Networking, HTTP, metadata, authentication and Linux concepts required for this room. |
-| [Instructor Workflow](docs/README.md#02--instructor-workflow) | The practical sequence from web inspection through privilege review. |
-| [Defensive Context](docs/README.md#03--defensive-context) | Detection and hardening notes tied to the services and techniques in the lesson. |
-| [References & Templates](docs/README.md#04--references--templates) | Official manuals and concise technical-note templates. |
+| [Assessment walkthrough](docs/README.md#02--assessment-walkthrough) | The lab sequence, observed evidence and technical interpretation. |
+| [Fundamentals](docs/README.md#01--fundamentals) | TCP/IP, HTTP, Linux permissions, FTP and SSH concepts. |
+| [Defensive context](docs/README.md#03--defensive-context) | Detection ideas and hardening recommendations linked to findings. |
+| [References & templates](docs/README.md#04--references--templates) | Official tool documentation and reusable reporting templates. |
+| [Field toolkit](tools/README.md) | Tool roles and operational notes. |
 
 **Main navigation:** [Documentation Index](docs/README.md) · [Learning Plan](docs/LEARNING-PLAN.md) · [Tool Reference](tools/README.md) · [Three.js Frontend](site/)
 
 ### FRONTEND / VISUAL SYSTEM
 
 <div align="center">
-
 <img src="https://img.shields.io/badge/HTML5-STRUCTURE-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5" />
 <img src="https://img.shields.io/badge/CSS3-INTERFACE-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3" />
 <img src="https://img.shields.io/badge/JAVASCRIPT-INTERACTION-F7DF1E?style=flat-square&logo=javascript&logoColor=111111" alt="JavaScript" />
 <img src="https://img.shields.io/badge/THREE.JS-3D_RENDERING-39FF88?style=flat-square&logo=threedotjs&logoColor=white&labelColor=101914" alt="Three.js" />
-<img src="https://img.shields.io/badge/THREE--GLOBE-GEOGRAPHIC_VISUALS-39FF88?style=flat-square&labelColor=101914" alt="three-globe" />
 <img src="https://img.shields.io/badge/VITE-BUILD_TOOL-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite" />
 <img src="https://img.shields.io/badge/MARKDOWN-DOCUMENTATION-39FF88?style=flat-square&logo=markdown&logoColor=white&labelColor=101914" alt="Markdown" />
-
 </div>
 
-The banner Earth uses Natural Earth Admin 0 country-boundary geometry. The separate interactive site globe uses synthetic demonstration data; neither visual displays real network traffic, live attacks, or threat-intelligence feeds.
+The animated banner and cyber-operations frontend are retained as presentation assets. The interactive globe uses synthetic demonstration data; it does not represent live attacks, real network traffic or threat-intelligence feeds.
 
 ---
 
+<div align="center"><img src="assets/motion/05-ethics.svg" width="100%" alt="05 — Rules of Engagement" /></div>
+
+## RULES OF ENGAGEMENT & PUBLICATION SAFETY
+
+- All testing described here was performed only in the TryHackMe educational environment.
+- Do not reuse techniques against third-party systems without explicit authorization.
+- Credentials, VPN profiles, private keys, tokens and flags are not included.
+- Review screenshots for personal identifiers, passwords, private network details and answer-bearing data before publishing.
+- Findings are described as observations from an educational lab, not as a production security assessment.
+
+## SKILLS DEMONSTRATED
+
+**Network reconnaissance · TCP service enumeration · HTTP source inspection · Metadata analysis · Web content discovery · FTP access review · Password-auditing concepts · SSH · Linux user enumeration · Sudo policy review · Privilege-boundary analysis · Technical reporting**
+
 <div align="center">
-  <img src="assets/motion/05-ethics.svg" width="100%" alt="05 — Rules of Engagement" />
-</div>
-
-### RULES OF ENGAGEMENT
-
-- All testing is limited to the TryHackMe-provided training environment or systems with explicit authorization.
-- Do not reuse lab techniques against third-party systems without permission.
-- Do not commit VPN profiles, credentials, API keys, flags, or other secrets.
-- Keep room-specific answers and walkthrough material unpublished while TryHackMe sharing restrictions apply.
-- Treat all interface globe routes and telemetry-like visuals as **synthetic demo data**.
-
----
-
-<div align="center">
-
 **JOHN ROOT**  
 <sub>CYBERSECURITY / OFFENSIVE SECURITY / PENETRATION TESTING</sub>
-
 <br />
-
 <em>Learn deliberately. Test ethically. Verify everything.</em>
-
 </div>
