@@ -1,63 +1,65 @@
-# 01 — Web Reconnaissance
+# 03 — Web Reconnaissance
 
 ## Objective
 
-Follow the instructor's first technical investigation: inspect the HTTP page, understand its HTML, retrieve a referenced image, examine the image metadata and discover candidate web paths.
+Inspect the HTTP page and its source, identify a referenced image, retrieve it for local inspection, review its metadata and enumerate candidate web paths.
 
-## 1. Inspect the page in the browser
+## 1. Browser inspection and HTML source
 
-Open the HTTP service from the currently deployed lab machine. Observe:
-- visible page content and title;
-- page layout and background image;
-- links and referenced resources;
-- browser errors and redirects.
+The browser evidence shows the target's HTTP page displaying a Brooklyn Nine-Nine image. Inspecting the page source revealed a background image resource named `brooklyn99.jpg`, CSS controlling its presentation and an HTML comment referring to steganography.
 
-Use **View Source** to inspect the HTML delivered by the server. Use Developer Tools when the live DOM or network requests need to be compared with the original source.
+The comment was treated as an investigative clue, not proof that hidden data existed. The image was retrieved and examined locally.
 
 ## 2. Retrieve the referenced image
 
-The instructor identifies an image resource referenced by the page and downloads it for local analysis. The purpose of this step is to move from a visual clue in the browser to a file that can be examined with local tools.
+The terminal evidence shows `wget` retrieving the referenced JPEG and receiving HTTP `200 OK`. This saved the resource locally for file inspection. The room-specific URL is omitted from this public report.
 
-Use the current resource reference from the authorized lab session. Do not publish the room-specific URL or the retrieved file's answer-bearing contents.
+## 3. Metadata inspection with ExifTool
 
-## 3. Review image metadata with ExifTool
+The downloaded file was examined with:
 
-ExifTool reads metadata embedded in supported file formats. Review the fields it actually reports:
-- file format and dimensions;
-- timestamps;
-- author/software information;
-- comments or other descriptive fields.
+```bash
+exiftool brooklyn99.jpg
+```
 
-Do not assume that every image contains hidden information. If the metadata report contains only ordinary file properties, record that accurately.
+- `exiftool` reads and displays metadata from supported file formats.
+- `brooklyn99.jpg` is the local input file in the observed command.
 
-## 4. Discover candidate web paths with Gobuster
+The visible output reports ordinary file properties, including JPEG format, dimensions of 533 × 300 pixels, file size and filesystem timestamps. It does not show a clear embedded author comment or an obvious hidden payload.
 
-The instructor uses Gobuster in directory-discovery mode with a common-path wordlist. SecLists is the source of candidate path names.
+**Interpretation:** metadata inspection characterized the file, but the visible metadata output alone does not demonstrate successful steganographic extraction. No hidden message is claimed from this step.
 
-Understand:
-- target base URL;
-- wordlist selection;
-- HTTP method and request behavior;
-- negative status-code handling;
-- response code and response size;
-- why candidate paths require manual validation.
+## 4. Gobuster content discovery
 
-A response such as 403 indicates that the server refused the request; it does not mean that the resource does not exist. A 200 response indicates that the server returned content, not that the content is vulnerable.
+The supplied terminal screenshot shows Gobuster v3.8.2 running in directory-enumeration mode against the HTTP service using the SecLists `common.txt` wordlist.
 
-## Tools in this stage
+The visible results include:
 
-- Firefox / Developer Tools
-- `wget`
-- ExifTool
-- SecLists
-- Gobuster
+| Candidate | Observed HTTP response |
+|:--|:--|
+| `index.html` | 200 |
+| `.htaccess`, `.htpasswd`, `.hta`, `server-status` | 403 |
 
-## Defensive interpretation
+A 403 response means the server refused access to the requested resource. It is not equivalent to a 404 and should not be interpreted as proof that the path is absent. A 200 response confirms that the server returned content, not that the resource is vulnerable.
 
-The security concern is unintended information or functionality exposed through source code, static assets, metadata or web paths.
+The recorded command structure was:
 
-Defensive controls include removing unused files, sanitizing metadata, disabling unnecessary directory listing, enforcing server-side authorization and monitoring repeated path-guessing requests.
+```bash
+gobuster dir -u <HTTP_BASE_URL> -w <WORDLIST>
+```
 
-## Publication boundary
+- `dir` selects directory/file discovery mode.
+- `-u` supplies the base URL.
+- `-w` selects the candidate-path wordlist.
 
-Document the technique and HTTP concepts only. Do not publish room-specific paths, file contents, discovered secrets or answer-bearing observations while the room is active.
+## Why this stage mattered
+
+Source inspection identified a static asset and an investigative clue. Metadata review characterized the downloaded file. Gobuster broadened the view beyond the page visible in the browser and demonstrated why HTTP status codes need interpretation.
+
+## Defensive relevance
+
+- Remove unused resources and sensitive files from web roots.
+- Avoid embedding operational clues or internal paths in public source.
+- Sanitize metadata before publishing images.
+- Disable unnecessary server-status endpoints and restrict configuration-file access.
+- Monitor path-guessing patterns and validate access controls server-side.
