@@ -39,3 +39,9 @@ Post-exploitation enumeration establishes the actual privileges of the authentic
 ## Result
 
 The supplied screenshot supports authenticated Linux access, user-directory enumeration and retrieval of the user-level objective. Sensitive file contents are not reproduced.
+
+## Practical evidence
+
+![Home directory enumeration and User Flag retrieval](../evidence/12-user-flag.png)
+
+*Evidence 12 — Enumeration of `/home` leads to the `holt` directory and `user.txt`. The flag value is redacted.*
