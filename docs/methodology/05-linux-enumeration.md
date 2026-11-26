@@ -1,42 +1,41 @@
-# 05 — Linux Enumeration After SSH
+# 06 — Linux Post-Exploitation Enumeration
 
 ## Objective
 
-After establishing an authorized SSH session, understand the permissions and filesystem context of the authenticated Linux account.
+After SSH access, understand the authenticated user's local context, inspect visible home directories and permissions, and locate the user-level objective.
 
-## Identity and session context
+## 1. Establish the account context
 
-The first questions are:
-- which account is active;
-- which groups apply to that account;
-- which directory is the current working directory;
-- which home directories and files are visible;
-- what permissions are granted to the current user.
+The supplied SSH screenshot shows a shell prompt for the authenticated lab user. The next commands inspected the local filesystem and user home-directory layout. The evidence supports that the session was operating as the discovered user, not as root.
 
-A remote shell operates with the authenticated account's identity unless a separate privileged execution mechanism is used.
+## 2. Inspect home directories
 
-## Home directories and files
+The terminal output shows navigation through `/home` and inspection of user directories. This is a basic post-exploitation step: determine what the authenticated identity can see and which files are accessible.
 
-The instructor reviews the Linux home-directory structure and moves through user directories. The learning objectives are:
-- understand how user home directories are organized;
-- distinguish ownership from access permissions;
-- identify which files are readable by the current account;
-- avoid assuming that a visible file is automatically sensitive or exploitable.
+The screenshot shows a user-level text file being read from another home directory. The actual file contents and flag value are omitted from this public document.
 
-Room-specific directory names, file names and file contents must remain in private notes while the room is active.
+## 3. Interpret Linux permissions
 
-## Permission review
+A file's accessibility depends on its owner and group, the file's permission bits, execute (traverse) permission on parent directories, supplementary groups and other security controls.
 
-Interpret the owner, group and other permission bits. Remember that directory traversal requires execute permission on the directory, and access to a file depends on both the file and its parent directories.
+Listing a directory, traversing it and reading a file are distinct permissions.
 
-## Root versus a regular user
+## 4. User-level objective
 
-A regular account has only the access granted by its identity, groups and explicit privilege rules. Root is the superuser account. A user may have access to selected privileged commands without having unrestricted root access.
+The supplied evidence shows that the user-level flag file was located and read. This confirmed completion of the room's user objective before privilege escalation. The flag value is not included in this repository.
 
-## Defensive relevance
+## Why this stage mattered
 
-- Protect user home directories and sensitive files.
-- Remove stale accounts and unused access.
-- Review group membership and file ownership.
-- Monitor unusual access to other users' directories.
-- Apply least privilege to interactive and service accounts.
+Post-exploitation enumeration establishes the actual privileges of the authenticated account and identifies whether local configuration or file permissions expose additional information. It also prevents treating SSH access as equivalent to administrator access.
+
+## Defensive recommendations
+
+- Restrict home-directory traversal and sensitive file readability.
+- Review ownership and group membership.
+- Remove stale accounts and unnecessary files.
+- Monitor access to other users' home directories.
+- Keep service and interactive accounts minimally privileged.
+
+## Result
+
+The supplied screenshot supports authenticated Linux access, user-directory enumeration and retrieval of the user-level objective. Sensitive file contents are not reproduced.
