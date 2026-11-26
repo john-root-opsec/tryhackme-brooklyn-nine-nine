@@ -1,7 +1,7 @@
 <div align="center">
-<img src="../assets/motion/04-learning-log.svg" width="100%" alt="Documentation archive" />
-**PRECINCT 99 / TECHNICAL KNOWLEDGE BASE**
-<sub>COMPLETED LAB • PRACTICAL WALKTHROUGH • DEFENSIVE CONTEXT</sub>
+  <img src="../assets/motion/04-learning-log.svg" width="100%" alt="Documentation archive" />
+  <p><strong>PRECINCT 99 / TECHNICAL KNOWLEDGE BASE</strong></p>
+  <p><sub>COMPLETED LAB • PRACTICAL WALKTHROUGH • DEFENSIVE CONTEXT</sub></p>
 </div>
 
 # Documentation Index
