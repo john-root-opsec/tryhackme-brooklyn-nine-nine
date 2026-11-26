@@ -1,16 +1,12 @@
 <div align="center">
-
 <img src="../assets/motion/04-learning-log.svg" width="100%" alt="Documentation archive" />
-
 **PRECINCT 99 / TECHNICAL KNOWLEDGE BASE**
-
-<sub>INSTRUCTOR WORKFLOW • LINUX PENTESTING • SERVICE REVIEW</sub>
-
+<sub>COMPLETED LAB • PRACTICAL WALKTHROUGH • DEFENSIVE CONTEXT</sub>
 </div>
 
 # Documentation Index
 
-This knowledge base follows the practical sequence demonstrated in the Brooklyn Nine-Nine lesson. Each page explains the technique used in that stage and the technical concepts needed to understand its purpose and output.
+This knowledge base documents the completed TryHackMe Brooklyn Nine-Nine lab. It preserves the instructor's practical sequence while separating observed actions, technical interpretation and defensive recommendations.
 
 ## 01 / Fundamentals
 
@@ -18,26 +14,26 @@ This knowledge base follows the practical sequence demonstrated in the Brooklyn 
 |:--|:--|
 | [Networking & TCP/IP](fundamentals/networking-and-tcp-ip.md) | ICMP reachability, TCP ports, SYN scans and Nmap port states. |
 | [Web & HTTP](fundamentals/web-and-http.md) | HTTP pages, source inspection, static assets, metadata and directory discovery. |
-| [Linux & Permissions](fundamentals/linux-and-permissions.md) | Shell basics, users, home directories, file permissions and sudo policy. |
+| [Linux & Permissions](fundamentals/linux-and-permissions.md) | Users, home directories, file permissions, sudo policy and privilege boundaries. |
 | [Authentication & Access](fundamentals/authentication-and-access.md) | FTP access models, password auditing, wordlists and SSH authentication. |
 
-## 02 / Instructor Workflow
+## 02 / Assessment Walkthrough
 
-| Order | Stage | Main activity |
+| Stage | Document | Focus |
 |:--:|:--|:--|
-| 00 | [Environment Setup](methodology/00-environment-setup.md) | Start the lab, connect Kali through the approved VPN path and verify reachability. |
-| 01 | [Web Reconnaissance](methodology/01-web-reconnaissance.md) | Inspect the page and source, retrieve the referenced image, review metadata and discover web paths. |
-| 02 | [Network Reconnaissance](methodology/02-network-reconnaissance.md) | Perform TCP SYN scanning and identify service/version information with Nmap. |
-| 03 | [FTP Review](methodology/03-service-enumeration-and-ftp.md) | Review FTP authentication, directory access and exposed-file handling. |
-| 04 | [SSH & Authentication](methodology/04-ssh-and-authentication.md) | Understand RockYou-based password auditing, Hydra and SSH access. |
-| 05 | [Linux Enumeration](methodology/05-linux-enumeration.md) | Review the authenticated Linux context, user directories and permissions. |
-| 06 | [Privilege Escalation](methodology/06-privilege-escalation.md) | Inspect sudo permissions, research the permitted binary with GTFOBins and understand the privilege boundary. |
+| 01 | [Environment & VPN](methodology/00-environment-setup.md) | Approved connection, tunnel interface, routing and reachability. |
+| 02 | [Network Reconnaissance](methodology/02-network-reconnaissance.md) | TCP SYN scan, exposed services and service/version identification. |
+| 03 | [Web Reconnaissance](methodology/01-web-reconnaissance.md) | HTTP page, source inspection, image retrieval, metadata and content discovery. |
+| 04 | [FTP Investigation](methodology/03-service-enumeration-and-ftp.md) | Anonymous access, directory listing, file retrieval and defensive implications. |
+| 05 | [SSH Authentication](methodology/04-ssh-and-authentication.md) | Wordlists, controlled password auditing and SSH access. |
+| 06 | [Linux Enumeration](methodology/05-linux-enumeration.md) | Authenticated user context, home directories, files and permissions. |
+| 07 | [Privilege Escalation](methodology/06-privilege-escalation.md) | Sudo policy, `less` shell capability and root-context verification. |
 
 ## 03 / Defensive Context
 
 | Document | Related lesson |
 |:--|:--|
-| [Detection & Monitoring](defense/01-detection-and-monitoring.md) | Web discovery, port scans, FTP access, SSH authentication and privileged activity. |
+| [Detection & Monitoring](defense/01-detection-and-monitoring.md) | Web discovery, scans, FTP access, SSH authentication and privileged activity. |
 | [Hardening & Remediation](defense/02-hardening-and-remediation.md) | Restrict exposed services, protect files, harden authentication and narrow sudo permissions. |
 
 ## 04 / References & Templates
@@ -46,15 +42,19 @@ This knowledge base follows the practical sequence demonstrated in the Brooklyn 
 - [Technical note template](templates/technical-note-template.md)
 - [Security review template](templates/security-review-template.md)
 
-## Documentation standard
+## How to read the walkthrough
 
-For each stage, document:
-1. **Objective** — what the instructor is trying to establish.
-2. **Technique** — which tool or interface is used and why.
-3. **Technical basis** — the protocol, Linux feature or security control involved.
-4. **Interpretation** — what an observation proves and what it does not prove.
-5. **Defensive relevance** — how the behavior could be detected or prevented.
+Each stage distinguishes:
 
-## Publication boundary
+1. **Objective** — the question the step was intended to answer.
+2. **Observed evidence** — what is visible in the supplied terminal or browser captures.
+3. **Command and options** — what the recorded command does and what its relevant parameters mean.
+4. **Interpretation** — what the output supports, and what it does not prove.
+5. **Next decision** — how the observation informed the next stage.
+6. **Defensive relevance** — how a system owner could detect or reduce the risk.
 
-This repository documents reusable techniques and concepts. Do not publish active-room flags, credentials, target-specific file contents, successful password results, exact exploitation chains or walkthrough steps. Keep sensitive lab evidence in private notes until TryHackMe permits publication.
+## Evidence and privacy
+
+The public write-up deliberately excludes working credentials, password values, flag values, VPN profile names and raw connection details. Public screenshots must be redacted before they are added to the repository. Evidence captions describe the event without exposing the secret itself.
+
+The completion screen confirms the lab was completed. The original image includes a full personal identifier; use only a manually redacted copy if it is later added to the public repository.
