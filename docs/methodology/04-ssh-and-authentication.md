@@ -1,51 +1,43 @@
-# 04 — SSH Authentication Review
+# 05 — SSH Authentication Assessment
 
 ## Objective
 
-Follow the instructor's transition from a password-security clue to controlled wordlist-based authentication testing and SSH remote access.
+Use the password-related clue from FTP to understand weak-password risk, prepare a wordlist and conduct controlled authentication testing against the authorized lab SSH service.
 
-## Wordlists and RockYou
+## 1. SSH service confirmation
 
-A wordlist is a collection of password candidates. The instructor refers to RockYou to demonstrate how previously exposed and commonly reused passwords can be used in a controlled password audit.
+The Nmap service scan identified SSH on TCP port 22 and reported an OpenSSH version string. A separate connectivity check confirmed that TCP port 22 accepted a connection. This established that SSH was reachable; it did not establish that a particular account could authenticate.
 
-Important concepts:
-- wordlist source and provenance;
-- file format and character encoding;
-- size and resource requirements;
-- password reuse and predictable patterns;
-- safe handling of downloaded datasets.
+## 2. Wordlist preparation
 
-Do not add a downloaded wordlist to this repository. It is unnecessary for documentation and may be large.
+The evidence shows the local RockYou compressed wordlist being inspected and decompressed for use by the lab exercise. RockYou is a set of candidate passwords; its size, provenance and quality influence the amount of work involved. A larger list is not automatically better.
 
-## Hydra
+The wordlist itself is not included in this repository.
 
-Hydra is used in the lesson to demonstrate password-based authentication testing against the authorized lab service.
+## 3. Hydra password audit
 
-Understand the components of an authentication audit:
-- the explicitly authorized host and service;
-- the account scope;
-- the candidate-password source;
-- connection and attempt limits;
-- the service response used to evaluate an attempt;
-- the risk of account lockout or service degradation.
+The supplied terminal evidence shows Hydra performing a controlled SSH password audit in the TryHackMe environment. The output reported one valid credential pair for the lab account.
 
-This document intentionally omits target-specific Hydra arguments, usernames, successful credentials and output.
+The successful password is intentionally not recorded in this public document. The technical significance is that a weak/reused password allowed an online authentication attempt to succeed in the controlled room.
 
-## SSH
+Relevant Hydra concepts include account selection, wordlist input, service-module selection, concurrency and success detection from the service response. Attempt rate and account lockout behavior matter in any legitimate audit.
 
-SSH provides encrypted remote administration. The client should verify the server's host identity and then authenticate using a method permitted by the server.
+## 4. SSH session
 
-A successful login grants the permissions of the authenticated account. It is not equivalent to root access.
+The subsequent terminal capture shows an SSH session established as the discovered lab user. The prompt and session output confirm the authenticated account context.
 
-## Defensive controls
+A successful SSH login grants the permissions assigned to that account. It is not equivalent to root access.
 
-- Prefer strong, unique passwords or managed public-key authentication.
-- Use multi-factor authentication where appropriate.
+## Defensive recommendations
+
+- Enforce strong, unique passwords and monitor password reuse.
+- Prefer public-key authentication with protected private keys where appropriate.
 - Restrict SSH access to approved users and network sources.
-- Apply rate limits and monitor repeated failures.
-- Protect private keys and never commit credentials to Git.
+- Add multi-factor authentication where supported.
+- Apply rate limits and alert on repeated failures.
 - Review successful logins as well as failed attempts.
+- Never store passwords or private keys in Git.
 
-## Publication boundary
+## Result
 
-Do not publish the room's user name, password, successful Hydra result, SSH command line or active-room walkthrough.
+The supplied evidence supports a successful controlled password audit and subsequent SSH access as a non-root lab user. The credential value is not published.
