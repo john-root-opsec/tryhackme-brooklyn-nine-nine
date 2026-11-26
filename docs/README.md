@@ -36,7 +36,11 @@ This knowledge base documents the completed TryHackMe Brooklyn Nine-Nine lab. It
 | [Detection & Monitoring](defense/01-detection-and-monitoring.md) | Web discovery, scans, FTP access, SSH authentication and privileged activity. |
 | [Hardening & Remediation](defense/02-hardening-and-remediation.md) | Restrict exposed services, protect files, harden authentication and narrow sudo permissions. |
 
-## 04 / References & Templates
+## 04 / Practical Evidence
+
+- [Screenshot evidence archive](evidence/README.md) — real lab captures organized by assessment stage, with secrets redacted.
+
+## 05 / References & Templates
 
 - [Official tool and protocol references](references/README.md)
 - [Technical note template](templates/technical-note-template.md)
