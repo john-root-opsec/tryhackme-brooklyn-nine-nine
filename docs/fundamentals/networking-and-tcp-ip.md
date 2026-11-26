@@ -2,16 +2,15 @@
 
 ## Why this topic appears in the lesson
 
-The instructor first verifies that the deployed host is reachable, then uses Nmap to identify exposed TCP services. Understanding ICMP, TCP and port states is required to interpret those results correctly.
+The instructor verifies that the deployed host is reachable, then uses Nmap to identify exposed TCP services. Understanding ICMP, TCP and port states is necessary to interpret those results correctly.
 
 ## ICMP reachability
 
-`ping` sends ICMP Echo Requests and waits for Echo Replies. It is a basic connectivity check—not a port scan and not proof that an application is available.
+`ping` sends ICMP Echo Requests and waits for Echo Replies. It is a basic connectivity check, not a port scan and not proof that an application is available.
 
-Interpret:
-- replies received: the tested path supports the ICMP exchange;
-- packet loss: some probes did not receive replies;
-- no reply: the host may be down, filtering ICMP or unreachable along the current route.
+- Replies received: the tested path supports the ICMP exchange.
+- Packet loss: some probes did not receive replies.
+- No reply: the host may be down, filtering ICMP or unreachable along the current route.
 
 A host can block ICMP and still expose TCP services.
 
@@ -23,7 +22,6 @@ A port number is not definitive proof of the software running behind it. The con
 
 ## TCP three-way handshake
 
-A normal TCP connection is established through:
 1. **SYN** — the client requests a connection.
 2. **SYN-ACK** — the server acknowledges and offers its sequence number.
 3. **ACK** — the client acknowledges the response.
@@ -32,7 +30,7 @@ A normal TCP connection is established through:
 
 The instructor demonstrates a SYN scan. Nmap sends a SYN probe and interprets the response without completing the full application connection in the same way as a TCP connect scan.
 
-A SYN scan needs packet privileges on Linux. If the scanner reports that elevated privileges are required, that is a permissions issue with the scan method—not evidence that the target is unreachable.
+A SYN scan needs packet privileges on Linux. If Nmap reports that elevated privileges are required, that is a local permissions issue with the scan method, not evidence that the target is unreachable.
 
 ## Port states
 
@@ -43,15 +41,15 @@ A SYN scan needs packet privileges on Linux. If the scanner reports that elevate
 | `filtered` | Filtering prevents Nmap from deciding whether the port is open. |
 | `open|filtered` | The scan cannot distinguish an open port from a filtered response. |
 
-The state describes what the scan could infer from one network position at one point in time.
+A state describes what the scan could infer from one network position at one point in time.
 
 ## Service/version detection
 
-Port discovery answers **which ports appear open**. Service/version detection attempts to identify **which application and version respond**. A banner or version result is useful evidence, but it does not by itself prove that a vulnerability exists.
+Port discovery answers **which ports appear open**. Service/version detection attempts to identify **which application and version respond**. A banner or version result is useful evidence, but does not by itself prove that a vulnerability exists.
 
 ## Routing and VPN context
 
-When Kali connects to TryHackMe through OpenVPN, a virtual interface and routes are added. Verify local addressing and routing before testing a lab host:
+When Kali connects to TryHackMe through OpenVPN, a virtual interface and routes are added. Verify local addressing and routing before testing the lab host:
 
 ```bash
 ip -br addr
