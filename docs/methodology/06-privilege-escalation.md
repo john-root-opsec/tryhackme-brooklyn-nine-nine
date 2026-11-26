@@ -52,3 +52,13 @@ This report describes the mechanism and result, but omits the exact shell-escape
 ## Result
 
 The supplied terminal evidence supports a successful transition from the authenticated lab user to root through an overly permissive sudo rule for `less`. Root identity was verified and the root-level objective was reached.
+
+## Practical evidence
+
+![whoami confirms root after the less shell escape](../evidence/13-root-verification.png)
+
+*Evidence 13 — After invoking the shell escape from the permitted `less` context, `whoami` returns `root`.*
+
+![Root flag file access](../evidence/14-root-flag.png)
+
+*Evidence 14 — `/root/root.txt` is accessed. The flag value is redacted.*
