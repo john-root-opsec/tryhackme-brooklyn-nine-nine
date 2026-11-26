@@ -1,43 +1,38 @@
-# 03 — FTP Service Review
+# 04 — FTP Enumeration & File Investigation
 
 ## Objective
 
-After identifying the file-transfer service, follow the instructor's review of FTP authentication, directory access and file handling.
+Review the FTP service's authentication behavior, identify what an anonymous session can access and inspect the file made available by the lab.
 
-## FTP service context
+## 1. Service context
 
-FTP uses a control connection for commands and a separate data connection for directory listings and file transfers. Traditional FTP does not encrypt credentials or data by default.
+Nmap identified the FTP service as vsftpd 3.0.3 in the observed lab scan. FTP commonly uses a control connection for commands and a separate data connection for directory listings and file transfers. Traditional FTP does not encrypt credentials or transferred data by default.
 
-Service identification can provide product and version information, but a version string alone is not proof of a vulnerability.
+## 2. Anonymous authentication
 
-## Access review
+The supplied terminal screenshot shows an FTP client connecting to the lab service and selecting the `anonymous` account. The server returned a successful login response. The screenshot then shows a directory listing containing a text file.
 
-The instructor checks the authentication behavior exposed by the FTP service. Understand the distinction between:
-- named-user authentication;
-- anonymous access;
-- successful authentication;
-- permission to list a directory;
-- permission to download, upload, modify or delete a file.
+This establishes that anonymous access was enabled and that the session could list the exposed directory. Authentication and authorization are distinct: a successful login does not imply write, modify or delete permissions.
 
-These permissions are separate. Being able to log in does not automatically grant write access.
+## 3. File retrieval and review
 
-## Directory and file review
+The terminal evidence shows the listed text file being downloaded locally and opened. Its contents contained a message warning that a user's password was weak. The exact room-specific message and filename are omitted because they disclose a solution breadcrumb rather than a reusable technical concept.
 
-When access is permitted in the lab, directory listing and file retrieval help determine what information is exposed. Treat any retrieved content as sensitive lab evidence.
+The important reasoning step was to treat the file as a clue that informed the authentication review, rather than assuming FTP itself provided a shell.
 
-For the public repository, document only the general lesson:
-- what anonymous access means;
-- why file exposure matters;
-- how permissions constrain operations;
-- why cleartext protocols create confidentiality risks.
+## 4. Security interpretation
 
-Do not publish room-specific file names, messages, credentials, flags or contents while the room is active.
+Anonymous FTP can expose internal notes or files to anyone who can reach the service. Even read-only access may disclose operational information that helps an attacker identify usernames, weak credentials or other attack surfaces.
 
-## Defensive relevance
+## Defensive recommendations
 
-- Disable anonymous access unless there is a documented requirement.
+- Disable anonymous access unless there is a documented business requirement.
 - Prefer SFTP or FTPS over unencrypted FTP.
-- Restrict read/write permissions to the minimum necessary.
-- Isolate transfer directories from application and system files.
-- Monitor authentication and file-transfer events.
-- Remove sensitive or obsolete files from exposed directories.
+- Restrict directory visibility and file permissions.
+- Keep transfer directories isolated from system and application files.
+- Remove stale files and secrets from exposed directories.
+- Monitor anonymous logins, listings and downloads.
+
+## Result
+
+The evidence supports anonymous FTP authentication, directory listing, retrieval of a text file and discovery of a password-related clue. The room-specific file content is not reproduced.
