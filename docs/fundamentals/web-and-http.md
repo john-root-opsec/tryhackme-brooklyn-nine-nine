@@ -2,23 +2,17 @@
 
 ## Why this topic appears in the lesson
 
-The instructor begins the technical investigation through the browser. He inspects the page, checks its delivered HTML, retrieves a referenced image, reviews the file metadata and then uses directory discovery to map additional web resources.
+The instructor inspects the page, checks its delivered HTML, retrieves a referenced image, reviews file metadata and uses directory discovery to map additional web resources.
 
 ## Browser inspection
 
-Start by observing the page as a user would:
-- page title and visible content;
-- page layout and background resources;
-- links and referenced assets;
-- redirects and browser errors.
+Start by observing the page as a user would: its title and visible content, layout and background resources, links, referenced assets, redirects and browser errors.
 
-The browser's **View Source** displays the HTML document delivered by the server. The live DOM shown in Developer Tools may differ because client-side JavaScript can modify it after loading.
+The browser's **View Source** displays the HTML document delivered by the server. The live DOM in Developer Tools may differ because client-side JavaScript can modify it after loading.
 
 ## HTTP requests and responses
 
-HTTP follows a request/response model. A browser or command-line client sends a request to a server and receives a status code, headers and—when applicable—a response body.
-
-Relevant status codes during content discovery:
+HTTP follows a request/response model. A browser or command-line client sends a request and receives a status code, headers and, when applicable, a response body.
 
 | Code | Meaning |
 |:--:|:--|
@@ -28,31 +22,19 @@ Relevant status codes during content discovery:
 | `404` | The requested resource was not found. |
 | `5xx` | The server encountered an error processing the request. |
 
-A `403` response does not mean that the resource is absent. A `404` response may also be customized by the application, so discovery results need interpretation.
+A `403` response does not mean that the resource is absent. Discovery results require interpretation.
 
 ## Static assets and file metadata
 
 A page may reference images or other static files that can be retrieved separately. The lesson uses `wget` to save an image locally and ExifTool to inspect its metadata.
 
-Metadata may contain:
-- file format and dimensions;
-- timestamps;
-- author or software fields;
-- device or editing information;
-- comments or other embedded descriptive fields.
-
-Not every image contains useful metadata. An empty or ordinary metadata report is still a valid result; do not invent a finding when the tool reports none.
+Metadata may contain file format and dimensions, timestamps, author/software fields, device information or comments. Not every image contains useful metadata. An ordinary metadata report is still a valid result; do not invent a finding when the tool reports none.
 
 ## Directory and content discovery
 
-Gobuster's directory mode requests candidate paths from a wordlist. SecLists provides collections of candidate names commonly used for this type of authorized assessment.
+Gobuster's directory mode requests candidate paths from a wordlist. SecLists provides collections of candidate names commonly used for authorized assessment.
 
-When interpreting results:
-- review the HTTP status code;
-- consider response size and redirects;
-- understand the configured negative status codes;
-- compare suspicious responses with the site's normal not-found behavior;
-- manually validate candidate resources in the authorized scope.
+When interpreting results, review status codes, response size and redirects; understand negative status-code handling; compare suspicious responses with normal not-found behavior; and manually validate candidate resources in scope.
 
 A discovered path is not automatically a vulnerability. It becomes security-relevant when the resource exposes information or functionality that should not be available.
 
