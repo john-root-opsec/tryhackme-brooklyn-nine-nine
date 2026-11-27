@@ -13,7 +13,7 @@ Sensitive captures must be redacted before public display.
 
 A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn Nine-Nine** lab. Each section pairs an original capture with a concise explanation of the action, the technical observation and its relevance to the assessment.
 
-> **Publication safety:** Do not publish recovered passwords, user/root flag values, VPN credentials, tokens or private configuration. The captures for Hydra authentication, flag discovery/validation and any terminal output containing secrets must be redacted and re-uploaded before they are displayed publicly. Redact values without altering the surrounding command output.
+> **Publication context:** This write-up intentionally preserves the original, unredacted evidence collected during the TryHackMe Brooklyn Nine-Nine challenge, including the discovered credentials, user and root flags, and terminal outputs. These artifacts are part of the authorized training exercise and are presented to demonstrate the complete attack path, document the technical findings, and make the results independently verifiable. All activities were performed against the designated TryHackMe lab target. The disclosed challenge credentials and flags must not be interpreted as credentials for any real-world system. Personal account credentials, API tokens, and unrelated private configuration are not part of this publication.
 
 ## Assessment overview
 
