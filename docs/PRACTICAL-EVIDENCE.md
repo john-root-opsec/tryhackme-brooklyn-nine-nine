@@ -4,7 +4,7 @@ Original screenshots are stored in ../assets/evidence/.
 Sensitive captures must be redacted before public display.
 -->
 <div align="center">
-  <img src="../assets/motion/practical-evidence-banner.svg" width="100%" alt="Brooklyn Nine-Nine — Precinct 99 Cyber Operations — TryHackMe Practical Penetration Testing — Case 001" />
+  <img src="../assets/motion/precinct99-cyber-operations-banner.gif" width="100%" alt="Brooklyn Nine-Nine — Precinct 99 Cyber Operations — TryHackMe Practical Penetration Testing — Case 001" />
   <p><strong>AUTHORIZED LAB • EVIDENCE-DRIVEN WALKTHROUGH • CASE 001</strong></p>
   <p><sub>TRYHACKME / BROOKLYN NINE-NINE / LINUX PENETRATION TESTING</sub></p>
 </div>
@@ -34,23 +34,33 @@ A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn
 
 ### 01 — VPN Tunnel Establishment
 
-![OpenVPN connection established](../assets/evidence/01-vpn-connection.png)
+<p><sub><code>CASE 001 / EVIDENCE 01</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/01-vpn-connection.png" alt="OpenVPN connection established" width="100%" /></p>
 
 **Action:** Established the OpenVPN connection to the TryHackMe lab network.
 
 **Technical significance:** A successful VPN connection provides the network path required to reach the assigned target. Confirm tunnel establishment before conducting discovery activity.
 
+---
+
 ### 02 — VPN Connectivity Verification
 
-![VPN connectivity verification](../assets/evidence/02-vpn-connection.png)
+<p><sub><code>CASE 001 / EVIDENCE 02</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/02-vpn-connection.png" alt="VPN connectivity verification" width="100%" /></p>
 
 **Action:** Verified that the lab tunnel was active and that network communication was available.
 
 **Technical significance:** Connectivity checks help distinguish routing or VPN problems from target-side service availability.
 
+---
+
 ### 03 — Network Discovery and Nmap Reconnaissance
 
-![Network connectivity and Nmap reconnaissance](../assets/evidence/03-network-connectivity-and-nmap-reconnaissance.png)
+<p><sub><code>CASE 001 / EVIDENCE 03</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/03-network-connectivity-and-nmap-reconnaissance.png" alt="Network connectivity and Nmap reconnaissance" width="100%" /></p>
 
 **Action:** Performed host and port discovery against the authorized target.
 
@@ -58,17 +68,25 @@ A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn
 
 **Technical significance:** Port discovery defines the externally reachable attack surface and guides service-specific enumeration.
 
+---
+
 ### 04 — HTTP Service Reconnaissance
 
-![Web reconnaissance](../assets/evidence/04-web-reconnaissance.png)
+<p><sub><code>CASE 001 / EVIDENCE 04</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/04-web-reconnaissance.png" alt="Web reconnaissance" width="100%" /></p>
 
 **Action:** Opened the target's HTTP service and inspected the hosted Brooklyn Nine-Nine page.
 
 **Technical significance:** Manual web reconnaissance establishes the visible application surface before deeper inspection of its resources and source.
 
+---
+
 ### 05 — HTML Source Inspection
 
-![HTML source-code analysis](../assets/evidence/05-source-code-analysis.png)
+<p><sub><code>CASE 001 / EVIDENCE 05</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/05-source-code-analysis.png" alt="HTML source-code analysis" width="100%" /></p>
 
 **Action:** Inspected the page source and its referenced resources.
 
@@ -76,17 +94,25 @@ A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn
 
 **Technical significance:** Source review can reveal resource names, comments and implementation details that are not visible in the rendered page.
 
+---
+
 ### 06 — Image Metadata Analysis
 
-![ExifTool metadata analysis](../assets/evidence/06-exiftool-analysis.png)
+<p><sub><code>CASE 001 / EVIDENCE 06</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/06-exiftool-analysis.png" alt="ExifTool metadata analysis" width="100%" /></p>
 
 **Action:** Examined the downloaded image with ExifTool.
 
 **Technical significance:** Metadata inspection checks whether a file contains descriptive or potentially useful embedded metadata. The presence of metadata alone does not establish that a file contains a hidden payload.
 
+---
+
 ### 07 — Web Directory Enumeration
 
-![Gobuster directory enumeration](../assets/evidence/07-gobuster-enumeration.png)
+<p><sub><code>CASE 001 / EVIDENCE 07</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/07-gobuster-enumeration.png" alt="Gobuster directory enumeration" width="100%" /></p>
 
 **Action:** Enumerated candidate web paths with Gobuster.
 
@@ -94,25 +120,37 @@ A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn
 
 **Technical significance:** HTTP 403 means the server refused access to a requested resource; it does not mean the resource is absent.
 
+---
+
 ### 08 — FTP Anonymous Access
 
-![FTP anonymous access](../assets/evidence/08-ftp-anonymous-access.png)
+<p><sub><code>CASE 001 / EVIDENCE 08</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/08-ftp-anonymous-access.png" alt="FTP anonymous access" width="100%" /></p>
 
 **Action:** Tested the FTP service and confirmed that the lab accepted an anonymous session.
 
 **Technical significance:** Anonymous FTP can expose files without individual authentication and should be disabled when it is not explicitly required.
 
+---
+
 ### 09 — Password Wordlist Analysis
 
-![RockYou wordlist analysis](../assets/evidence/09-rockyou-wordlist-analysis.png)
+<p><sub><code>CASE 001 / EVIDENCE 09</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/09-rockyou-wordlist-analysis.png" alt="RockYou wordlist analysis" width="100%" /></p>
 
 **Action:** Prepared and reviewed the RockYou wordlist for the authorized authentication test.
 
 **Technical significance:** Wordlists are used in controlled password-auditing exercises to evaluate password strength. Their use must remain within the explicitly authorized lab scope.
 
+---
+
 ### 10 — FTP Intelligence: Note to Jake
 
-![FTP note to Jake](../assets/evidence/10-ftp-note-to-jake.png)
+<p><sub><code>CASE 001 / EVIDENCE 10</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/10-ftp-note-to-jake.png" alt="FTP note to Jake" width="100%" /></p>
 
 **Action:** Retrieved and inspected `note_to_jake.txt` from the FTP service.
 
@@ -120,7 +158,11 @@ A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn
 
 **Technical significance:** Files exposed by a service can provide context for later tests. Findings should be treated as leads and validated rather than assumed to be proof.
 
+---
+
 ### 11 — SSH Authentication Testing with Hydra
+
+<p><sub><code>CASE 001 / EVIDENCE 11</code></sub></p>
 
 > **Sensitive capture:** This screenshot may expose a recovered credential. Keep the original in the private evidence archive and replace the repository copy with a redacted version before public display.
 
@@ -128,7 +170,11 @@ A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn
 
 **Technical significance:** The test demonstrated the risk of weak credentials. Do not publish the recovered password or a complete credential pair.
 
+---
+
 ### 12 — User-Level Flag Discovery
+
+<p><sub><code>CASE 001 / EVIDENCE 12</code></sub></p>
 
 > **Sensitive capture:** Redact the flag value before publishing this screenshot.
 
@@ -136,7 +182,11 @@ A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn
 
 **Technical significance:** The user flag confirms progress under the unprivileged account; it does not demonstrate administrative access.
 
+---
+
 ### 13 — User Flag Validation
+
+<p><sub><code>CASE 001 / EVIDENCE 13</code></sub></p>
 
 > **Sensitive capture:** Redact the submitted flag value before publishing this screenshot. Keep only the room's successful validation status visible.
 
@@ -144,9 +194,13 @@ A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn
 
 **Technical significance:** Platform validation independently confirms that the discovered value satisfied the room objective.
 
+---
+
 ### 14 — Sudo Privilege Enumeration
 
-![Sudo privilege enumeration](../assets/evidence/14-sudo-privilege-enumeration.png)
+<p><sub><code>CASE 001 / EVIDENCE 14</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/14-sudo-privilege-enumeration.png" alt="Sudo privilege enumeration" width="100%" /></p>
 
 **Action:** Reviewed the account's permitted sudo commands.
 
@@ -154,33 +208,49 @@ A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn
 
 **Technical significance:** A pager is not a safe privilege boundary when it can spawn a shell. Sudo rules should follow least privilege and avoid granting root execution to shell-capable utilities.
 
+---
+
 ### 15 — GTFOBins Reference: less Shell Escape
 
-![GTFOBins less shell escape reference](../assets/evidence/15-gtfobins-less-shell-escape-reference.png)
+<p><sub><code>CASE 001 / EVIDENCE 15</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/15-gtfobins-less-shell-escape-reference.png" alt="GTFOBins less shell escape reference" width="100%" /></p>
 
 **Action:** Consulted the GTFOBins documentation for the shell-escape behavior of `less`.
 
 **Technical significance:** GTFOBins documents how legitimate Unix binaries can be abused in particular privilege contexts. A reference describes a technique; the lab's own terminal output is the evidence that it worked in this environment.
 
+---
+
 ### 16 — Preparing the Privilege Escalation Path
 
-![Less privilege escalation preparation](../assets/evidence/16-less-privilege-escalation-preparation.png)
+<p><sub><code>CASE 001 / EVIDENCE 16</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/16-less-privilege-escalation-preparation.png" alt="Less privilege escalation preparation" width="100%" /></p>
 
 **Action:** Prepared the permitted `less` invocation for the controlled privilege-escalation test.
 
 **Technical significance:** This step connects the sudo policy finding to the documented behavior of the pager. The critical condition is that `less` is executed with elevated privileges.
 
+---
+
 ### 17 — Inspecting User-Level File Content with less
 
-![User file inspection with less](../assets/evidence/17-user-flag-content-inspection-with-less.png)
+<p><sub><code>CASE 001 / EVIDENCE 17</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/17-user-flag-content-inspection-with-less.png" alt="User file inspection with less" width="100%" /></p>
 
 **Action:** Used `less` to inspect the user-level file in the lab environment.
 
 **Technical significance:** This capture records the pager context immediately before the escalation step. The relevant security issue is the shell-escape capability of the privileged binary, not ordinary file viewing by itself.
 
+---
+
 ### 18 — Root Shell Verification
 
-![Root shell privilege escalation confirmation](../assets/evidence/18-root-shell-privilege-escalation-confirmation.png)
+<p><sub><code>CASE 001 / EVIDENCE 18</code></sub></p>
+
+<p align="center"><img src="../assets/evidence/18-root-shell-privilege-escalation-confirmation.png" alt="Root shell privilege escalation confirmation" width="100%" /></p>
 
 **Action:** Triggered the documented shell escape through the sudo-authorized pager and verified the effective identity with `whoami`.
 
@@ -188,7 +258,11 @@ A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn
 
 **Technical significance:** Checking the effective identity provides direct confirmation that the privilege boundary was crossed in the lab.
 
+---
+
 ### 19 — Root Flag Discovery
+
+<p><sub><code>CASE 001 / EVIDENCE 19</code></sub></p>
 
 > **Sensitive capture:** The terminal screenshot contains the root flag. Do not display it publicly until the flag value has been redacted.
 
@@ -196,7 +270,11 @@ A chronological, evidence-led walkthrough of the authorized TryHackMe **Brooklyn
 
 **Technical significance:** This records discovery of the room's root-level objective. The flag value is intentionally excluded from the public write-up.
 
+---
+
 ### 20 — Root Flag Validation
+
+<p><sub><code>CASE 001 / EVIDENCE 20</code></sub></p>
 
 > **Sensitive capture:** Redact the submitted root flag value before publishing this screenshot. Keep the successful validation status visible.
 
