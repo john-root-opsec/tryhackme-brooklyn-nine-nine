@@ -27,7 +27,7 @@ This is an educational lab write-up, not a claim of commercial penetration-testi
 
  > **Lab status:** Completed. The practical screenshots, organized by assessment stage, are available in the [Practical Evidence Archive](docs/evidence/README.md). Passwords and flag values are redacted; the completion capture retains only the first name João.
 
-### QUICK FACTS
+## QUICK FACTS
 
 | Item | Detail |
 |:--|:--|
@@ -42,7 +42,7 @@ This is an educational lab write-up, not a claim of commercial penetration-testi
 
 <div align="center"><img src="assets/motion/02-field-toolkit.svg" width="100%" alt="02 — Field Toolkit" /><br /><img src="assets/tools/field-toolkit.svg" width="100%" alt="Custom icon grid for the tools used in the lab" /></div>
 
-### TOOLKIT / WHAT EACH TOOL CONTRIBUTED
+## TOOLKIT / WHAT EACH TOOL CONTRIBUTED
 
 | Tool | Role in the assessment |
 |:--|:--|
@@ -76,7 +76,7 @@ This is an educational lab write-up, not a claim of commercial penetration-testi
 | 07 | Privilege escalation | Identified an over-permissive sudo rule for a general-purpose pager and verified elevated execution. |
 | 08 | Completion | Reached the root-level objective and completed the TryHackMe room. |
 
-### KEY TECHNICAL OBSERVATIONS
+## KEY TECHNICAL OBSERVATIONS
 
 - The target exposed FTP, SSH and HTTP during the observed scan.
 - The HTTP page referenced a static image. Its source and metadata were inspected.
@@ -106,7 +106,7 @@ See the [technical walkthrough](docs/README.md#02--assessment-walkthrough) for r
 
 **Main navigation:** [Documentation Index](docs/README.md) · [Learning Plan](docs/LEARNING-PLAN.md) · [Tool Reference](tools/README.md) · [Three.js Frontend](site/)
 
-### FRONTEND / VISUAL SYSTEM
+## FRONTEND / VISUAL SYSTEM
 
 <div align="center">
 <img src="https://img.shields.io/badge/HTML5-STRUCTURE-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5" />
